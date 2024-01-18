@@ -1,0 +1,15 @@
+.cart{
+    width: 100%;
+}
+
+.h2{
+    color:#00dfc4;
+}
+
+.product{
+    margin: 10px;
+    padding: 20px;
+    border: #00dfc4 solid 3px;
+    border-radius: 10px;
+    color: #fff;
+}

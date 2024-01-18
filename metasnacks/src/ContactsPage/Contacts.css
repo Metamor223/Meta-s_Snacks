@@ -1,0 +1,19 @@
+.horizontal-menu {
+    display: flex; /* Устанавливаем горизонтальный flex-контейнер */
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем внутренний отступ */
+  }
+  
+  .horizontal-menu li {
+    margin-right: 10px; /* Добавляем небольшой отступ между элементами меню */
+  }
+  
+  .horizontal-menu li:last-child {
+    margin-right: 0; /* Убираем отступ справа у последнего элемента */
+  }
+  
+  /* Опциональные стили для ссылок внутри элементов списка */
+  .horizontal-menu li a {
+    text-decoration: none;
+    color: black;
+  }

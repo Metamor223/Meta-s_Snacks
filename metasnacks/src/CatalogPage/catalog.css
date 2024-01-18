@@ -1,0 +1,100 @@
+.product{
+    margin: 10px;
+    padding: 20px;
+    border: #00dfc4 solid 3px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.headerProduct{
+    display: block;
+    flex-direction: column;
+}
+
+.footerProduct{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.catalogAppearance{
+width: 100%;
+display: flex;
+}
+
+.catalogAppearance ul{
+    flex-wrap: wrap;
+}
+
+.categories{
+width: 20%;
+display: flex;
+flex-direction: column;
+}
+
+.categories input{
+    margin: 30px 0 20px 80px;
+    width: 60%;
+    text-align: center;
+}
+
+.categories input::placeholder{
+    color: #00dfc4;
+    font-size: 15px;
+}
+
+.categories label{
+    font-size: 25px;
+    color:#00dfc4;
+}
+
+.categories ul{
+    margin: 20px 0 0 20px;
+    padding-left: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.categories li{
+padding: 15px 30px 15px 20px;
+width: 100%;
+font-size: 25px;
+list-style-type: none;
+border-right: solid 1px #00dfc4;
+color:#00dfc4;
+transition: 0.5s;
+}
+
+.categories li:hover{
+    background-color: #00dfc4;
+    color:#1d2b3a
+}
+
+.catalogAppearance ul{
+    display: flex;
+    width: 80%;
+}
+
+.product li{
+list-style: none;
+width: 100%;
+}
+
+.footerProduct li{
+    width: 105px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: #1d2b3a;
+    color: #00dfc4;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+.footerProduct li:hover{
+    background-color: #00dfc4;
+    color:#1d2b3a
+}
