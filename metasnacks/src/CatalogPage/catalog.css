@@ -3,7 +3,12 @@
     padding: 20px;
     border: #00dfc4 solid 3px;
     border-radius: 10px;
-    color: #fff;
+    color: #00dfc4;
+}
+
+.product:hover{
+    background-color: #00dfc4;
+    color: #1d2b3a;
 }
 
 .headerProduct{

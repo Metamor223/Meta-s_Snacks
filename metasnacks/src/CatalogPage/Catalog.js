@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 import './catalog.css';
+import ProductPageInfo from './ProductPageInfo';
 
 export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,6 +11,8 @@ export default function Catalog() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showProductInfo, setShowProductInfo] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const products = ProductList();
 
@@ -19,11 +22,11 @@ export default function Catalog() {
 
   const filterProducts = (products) => {
     let filteredProducts = products;
-  
+
     if (selectedCategory) {
       filteredProducts = filteredProducts.filter((product) => product.category === selectedCategory);
     }
-  
+
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filteredProducts = filteredProducts.filter(
@@ -46,14 +49,23 @@ export default function Catalog() {
     setCartItems([...cartItems, product]);
   };
 
-  const handleClick = (product) => {
-    addToCart({ ...product, count: 1 });
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setShowProductInfo(true);
+  };
+
+  const handleCloseProductInfo = () => {
+    setShowProductInfo(false);
   };
 
   return (
     <div className="catalogAppearance">
+      {showProductInfo && (
+        <div className="overlay" onClick={handleCloseProductInfo}></div>
+      )}
+
       <div className="categories">
-      <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+        <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
         <label>Choose category:</label>
         <ul>
           <li onClick={() => handleCategoryChange("")}>All categories</li>
@@ -66,20 +78,23 @@ export default function Catalog() {
       <ul>
         {displayedItems.map((product) => (
           <div className="product" key={product.id}>
-            <li>
+            <li onClick={() => handleProductClick(product)}>
               <div className="headerProduct">
                 <img src={product.img} alt={product.name} style={{ width: '13vw' }} />
                 <p>{product.name}</p>
-                <p>{product.description}</p>
               </div>
               <div className="footerProduct">
                 <p>{product.price}</p>
-                <li onClick={() => handleClick(product)}>Add to Cart</li>
+                <li onClick={() => addToCart(product)}>Add to Cart</li>
               </div>
             </li>
           </div>
         ))}
       </ul>
+
+      {showProductInfo && (
+        <ProductPageInfo product={selectedProduct} onClose={handleCloseProductInfo} />
+      )}
     </div>
   );
 }
