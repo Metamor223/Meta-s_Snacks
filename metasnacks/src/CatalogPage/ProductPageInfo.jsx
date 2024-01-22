@@ -8,11 +8,13 @@ export default function ProductPageInfo({ product, onClose }) {
                 <h2>{product.name}</h2>
                 <button onClick={onClose}>X</button>
             </div>
-        <img src={product.img} alt={product.name} style={{ width: '17vw' }}/>
+        <img src={product.img} alt={product.name} style={{ width: '20vw' }}/>
             <div className="info-description">
-                <p><span>Price product :</span> {product.price}</p>
-                <p><span>Description :</span> {product.description}</p>        
+                <p>Price: {product.price}</p>
+                <button>Add to Cart</button>
+                <p>Description :  <span>{product.description}</span></p>        
             </div>
+            
       </div>
     </div>
   );

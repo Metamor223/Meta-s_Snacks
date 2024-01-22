@@ -16,14 +16,17 @@
     display: flex;
     flex-wrap: wrap;
     margin: auto;
+    justify-content: space-around;
     height: 90%;
     width: 90%;
     background-color: rgba(29, 43, 58, .9);
     padding: 1% 0 3% 0;
 }
 
+
 .info-body img{
-    margin: 0 50px 0px 50px;
+    border: 1px solid #00dfc4;
+    margin-bottom: 100px;
 }
 
 .info-header{
@@ -40,16 +43,23 @@
 }
 
 .info-description{
-    width: 60%;
-}
-
-.info-description :first-child,
-.info-description :last-child{
-    align-self: end;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .info-description span{
+    font-size: 14px;
+    
+}
+
+.info-description p{
+    padding-top: 100px;
+    text-align: start;
     font-size: 30px;
+    line-height: 0.5;
+    max-width: 100%;
 }
 
 button{
@@ -59,9 +69,14 @@ button{
     background-color: #1d2b3a;
     color:#00dfc4;
     font-size: 40px;
+    transition: 0.5s;
 }
 
 button:hover{
     background-color: #00dfc4;
     color: #1d2b3a;
+}
+
+.info-description button{
+    align-self: center;
 }

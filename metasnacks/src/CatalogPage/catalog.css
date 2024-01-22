@@ -4,6 +4,7 @@
     border: #00dfc4 solid 3px;
     border-radius: 10px;
     color: #00dfc4;
+    transition: .5s;
 }
 
 .product:hover{
