@@ -1,0 +1,19 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 89119387037
+      POSTGRES_DB: Metasnacks
+    ports:
+      - "5432:5432"
+
+  metasnacks-app:
+    image: metasnacks:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:89119387037@postgres:5432/Metasnacks
