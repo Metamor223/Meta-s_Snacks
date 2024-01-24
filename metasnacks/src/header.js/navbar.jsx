@@ -10,9 +10,10 @@ return (
                 <li>
                 <CustomLink to="/main/catalog">Catalog</CustomLink>
                 <CustomLink to="/main/contacts">Contacts</CustomLink>
+                <CustomLink to="/main/account">Account</CustomLink>
                 </li>
                 <li>
-                <CustomLink to="/main/account">Account</CustomLink>
+                <CustomLink to="/main/ordersFactory">Orders</CustomLink>
                 <Link to="/login">Log Out</Link>
                 <CustomLink to="/main/cart">Cart</CustomLink>
                 </li>

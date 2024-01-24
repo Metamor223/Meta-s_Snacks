@@ -23,6 +23,7 @@ export default function Registration(){
     
         // В этом месте вы можете использовать formData для отправки данных на сервер
         console.log('Form data submitted:', formData);
+        sendDataToServer(formData);
       };
 
     return(

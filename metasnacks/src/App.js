@@ -8,6 +8,7 @@ import Cart from './CartPage/Cart';
 import Registration from './RegistrationWindow/Registration';
 import LogIn from "./LoginWindow/logIn";
 import Account from './AccountPage/Account';
+import FactorysOrders from './OrdersForFactory/Orders';
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
               <Route index element={<Navigate to="/main/catalog"/>}/>
               <Route path='/catalog' element = {<Catalog/>}/>
               <Route path='contacts' element = {<Contacts/>}/>
+              <Route path='factorysorder' element = {<FactorysOrders/>}/>
               <Route path='account' element = {<Account/>}/>
               <Route path='cart' element = {<Cart/>}/>
             </Routes>

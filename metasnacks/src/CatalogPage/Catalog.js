@@ -31,8 +31,7 @@ export default function Catalog() {
       const query = searchQuery.toLowerCase();
       filteredProducts = filteredProducts.filter(
         (product) =>
-          (product.name && product.name.toLowerCase().includes(query)) ||
-          (product.description && product.description.toLowerCase().includes(query))
+          (product.name && product.name.toLowerCase().includes(query))
       );
     }
     return filteredProducts;
