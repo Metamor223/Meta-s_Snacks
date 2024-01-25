@@ -13,7 +13,7 @@ return (
                 <CustomLink to="/main/account">Account</CustomLink>
                 </li>
                 <li>
-                <CustomLink to="/main/ordersFactory">Orders</CustomLink>
+                <CustomLink to="/main/orders">Orders</CustomLink>
                 <Link to="/login">Log Out</Link>
                 <CustomLink to="/main/cart">Cart</CustomLink>
                 </li>

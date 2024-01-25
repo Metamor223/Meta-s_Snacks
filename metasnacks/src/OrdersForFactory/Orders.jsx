@@ -1,11 +1,9 @@
 import React from 'react';
 import './Orders.css';
 
-export default function FactorysOrders({client, product, order}){
+export default function Orders({client, product, order}){
     return(
     <div className="OrdersContainer">
-        <ul>
-            <li>
               <table>
                 <tr>
                     <th>Номер заказа</th>
@@ -16,16 +14,15 @@ export default function FactorysOrders({client, product, order}){
                     <th>Цена</th>
                 </tr>
                 <tr>
-                    <th>{order.id}</th>
-                    <th>{client.id}</th>
-                    <th>{product.id}</th>
-                    <th>{product.amount}</th>
-                    <th>{order.date}</th>
-                    <th>{order.price}</th>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>2020.10.04</td>
+                    <td>30000$</td>
                 </tr>
               </table>
-            </li>
-        </ul>
+              <button></button>
     </div>
-    );
+    )
 }

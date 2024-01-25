@@ -4,6 +4,7 @@ export default function Cart({ cartItems }) {
   // Состояние корзины в компоненте Cart
   const [cart, setCart] = useState(cartItems || []);
 
+
   // Функция для удаления товара из корзины
   const removeFromCart = (index) => {
     const updatedCart = [...cart];
