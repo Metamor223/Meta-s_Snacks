@@ -7,7 +7,7 @@ const sendDataToServer = async (formData) => {
         },
         body: JSON.stringify({
           Login: formData.Login,
-          organisation_name: formData.organisation_name,
+          organisation_name: formData.organisationName,
           ITN: formData.itn,
           password: formData.password, 
           role: 0

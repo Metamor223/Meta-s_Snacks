@@ -1,14 +1,14 @@
 import React from 'react';
 import {Route, Routes, Outlet, Router, Navigate} from 'react-router-dom';
 import './App.css';
-import Navbar from './header.js/navbar';
-import Catalog from './CatalogPage/Catalog';
-import Contacts from './ContactsPage/Contacts';
-import Cart from './CartPage/Cart';
-import Registration from './RegistrationWindow/Registration';
-import LogIn from "./LoginWindow/logIn";
-import Account from './AccountPage/Account';
-import Orders from './OrdersForFactory/Orders';
+import Navbar from './client/header.js/navbar';
+import Catalog from './client/CatalogPage/Catalog';
+import Contacts from './client/ContactsPage/Contacts';
+import Cart from './client/CartPage/Cart';
+import Registration from './client/RegistrationWindow/Registration';
+import LogIn from "./client/LoginWindow/logIn";
+import Account from './client/AccountPage/Account';
+import Orders from './client/OrdersForFactory/Orders';
 
 
 export default function App() {
