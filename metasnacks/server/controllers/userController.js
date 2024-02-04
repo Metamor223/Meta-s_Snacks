@@ -2,10 +2,11 @@ const {User,Orders} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const {where} = require("sequelize");
 
-const generateJwt = (id, email, organiastion_name, itn, role) => {
+const generateJwt = (id, email, organisation_name, itn, role) => {
    return jwt.sign(
-        {id, email, organiastion_name, itn, role}, 
+        {id, email, organisation_name, itn, role},
         process.env.SECRET_KEY,
         {expiresIn: '24'}
         )
@@ -13,19 +14,20 @@ const generateJwt = (id, email, organiastion_name, itn, role) => {
 
 class UserController{
     async registration(req,res,next){
-        const {email,organiastion_name,itn,password} = req.body
+        const {email,organisation_name,itn,password,role} = req.body
         if(!email || !password)
         {
             return next(ApiError.badRequest('Incorrect email or password'))
         }
-       const condidate = await User.findOne({where: {email}})
-       if(condidate)
+       const candidate = await User.findOne({where:{email}})
+       if(candidate)
        {
         return next(ApiError.badRequest('A user with the same email already exists'))
        }
        const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, organiastion_name, itn, password: hashPassword, role})
-        const token = generateJwt(user.user_id, user.email, user.organiastion_name, user.itn, user.role)
+        const user = await User.create({email, organisation_name, itn, password: hashPassword, role})
+       // const orders = await Orders.create({user_id: user.user_id})
+        const token = generateJwt(user.id, user.email, user.organisation_name, user.itn, user.role)
         return res.json({token})
     }
     async login(req,res,next){
@@ -39,12 +41,12 @@ class UserController{
         if(!comparePassword){
             return next(ApiError.internal('Wrong password'))
         }
-        const token = generateJwt(user.user_id, user.email, user.role)
+        const token = generateJwt(user.id, user.email, user.role)
         return res.json({token})
     }
 
     async check(req,res,next){
-     const token = generateJwt(req.user.user_id, req.user.email, req.user.role)
+     const token = generateJwt(req.user.id, req.user.email, req.user.role)
         res.json({token})
     }
 }

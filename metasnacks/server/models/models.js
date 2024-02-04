@@ -2,7 +2,7 @@ const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
 
 const User = sequelize.define('user',{
-    user_id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email:{type: DataTypes.STRING, unique:true, allowNull:false},
     organisation_name:{type: DataTypes.STRING, allowNull:false},
     itn:{type: DataTypes.INTEGER, unique:true, allowNull:false},
@@ -26,7 +26,7 @@ const Product = sequelize.define('product',{
     description:{type: DataTypes.STRING, allowNull:false}
 })
 
-const Recepts = sequelize.define('recepts',{
+const Recipes = sequelize.define('recepts',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     count:{type: DataTypes.INTEGER, allowNull:false},
     image_path:{type: DataTypes.STRING, allowNull:false}
@@ -52,14 +52,14 @@ Product.belongsTo(Orders)
 TypeOfProduct.hasMany(Product)
 Product.belongsTo(TypeOfProduct)
 
-Product.belongsToMany(Warehouse, {through: Recepts})
-Warehouse.belongsToMany(Product, {through: Recepts})
+Product.belongsToMany(Warehouse, {through: Recipes})
+Warehouse.belongsToMany(Product, {through: Recipes})
 
 module.exports = {
     User,
     Orders,
     Product,
-    Recepts,
+    Recipes,
     Warehouse,
     TypeOfProduct
 }

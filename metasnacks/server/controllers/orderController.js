@@ -1,8 +1,8 @@
 const {Orders} = require('../models/models')
 class OrderController{
     async create(req,res){
-        {user_id,product_id,amount, order_date, price}
-        const order = await TypeOfProduct.create({user_id,product_id,amount, order_date, price})
+        const {user_id,product_id,amount, order_date, price} = req.body
+        const order = await Orders.create({user_id,product_id,amount, order_date, price})
         return res.json(order)
     }
     async getAll(req,res){
