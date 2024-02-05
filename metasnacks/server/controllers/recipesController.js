@@ -45,9 +45,25 @@ class RecipesController {
                 include: [{product_id}]
             }
         )
+        return res.json(recipe)
     }
     async deleteOne(req, res) {
-
+        const {id} = req.params
+        try {
+            const recipes = await Recipes.destroy({
+                where: { id }
+            });
+            if (recipes) {
+                // Запись была успешно удалена
+                return res.json({ message: 'Recipes deleted successfully' });
+            } else {
+                // Запись с указанным product_id не была найдена
+                return res.status(404).json({ error: 'Recipes not found' });
+            }
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 }
 
