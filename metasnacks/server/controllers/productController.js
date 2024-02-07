@@ -38,10 +38,10 @@ class ProductController{
         return res.json(product)
     }
     async deleteOne(req,res){
-        const {product_id} = req.params
+        const {product_id} = parseInt(req.params.id,10)
         try {
             const product = await Product.destroy({
-                where: { product_id }
+                where: { product_id: {product_id} }
             });
             if (product) {
                 // Запись была успешно удалена

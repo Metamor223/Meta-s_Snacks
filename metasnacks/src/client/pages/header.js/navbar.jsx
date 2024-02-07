@@ -8,14 +8,14 @@ return (
         <nav>
             <ul>            
                 <li>
-                <CustomLink to="/main/catalog">Catalog</CustomLink>
-                <CustomLink to="/main/contacts">Contacts</CustomLink>
-                <CustomLink to="/main/account">Account</CustomLink>
+                <CustomLink to="/">Catalog</CustomLink>
+                <CustomLink to="/contacts">Contacts</CustomLink>
+                <CustomLink to="/account">Account</CustomLink>
                 </li>
                 <li>
-                <CustomLink to="/main/orders">Orders</CustomLink>
+                <CustomLink to="/orders">Orders</CustomLink>
                 <Link to="/login">Log Out</Link>
-                <CustomLink to="/main/cart">Cart</CustomLink>
+                <CustomLink to="/cart">Cart</CustomLink>
                 </li>
             </ul>
 
