@@ -5,10 +5,10 @@ services:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 89119387037
-      POSTGRES_DB: meta-snacks
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: meta_snacks
     ports:
-      - "1443:1443"
+      - "5432:5432"
 
   pgadmin:
     image: dpage/pgadmin4
