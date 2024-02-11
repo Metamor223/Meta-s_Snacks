@@ -5,18 +5,19 @@ import App from './App';
 import './style.css';
 import {BrowserRouter} from "react-router-dom";
 import UserStore from "./client/store/UserStore";
+import ProductStore from "./client/store/ProductStore";
 
-const Context = createContext(null)
+export const Context = createContext(null)
+console.log(process.env.REACT_APP_META_SNACKS)
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
     <React.StrictMode>
         <Context.Provider value={{
-            user: new UserStore()
+            user: new UserStore(),
+            product: new ProductStore()
         }}>
-        <BrowserRouter>
         <App/>
-        </BrowserRouter>
         </Context.Provider>
     </React.StrictMode>
 )

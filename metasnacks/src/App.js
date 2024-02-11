@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes, Outlet, Router, Navigate} from 'react-router-dom';
+import {Route, Routes, Outlet, Router, Navigate, BrowserRouter} from 'react-router-dom';
 import './App.css';
 import Navbar from './client/pages/header.js/navbar';
 import Catalog from './client/pages/CatalogPage/Catalog';
@@ -14,6 +14,9 @@ import AppRouter from "./client/components/AppRouter";
 
 export default function App() {
   return (
-     <AppRouter/>
+      <BrowserRouter>
+          <Navbar/>
+          <AppRouter/>
+      </BrowserRouter>
   )
 }

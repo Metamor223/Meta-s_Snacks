@@ -1,28 +1,43 @@
 import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import {Context} from "../../../index";
+import {useContext} from "react";
+import {ACCOUNT_ROUTE, CART_ROUTE, CATALOG_ROUTE, CONTACT_ROUTE, LOGIN_ROUTE, ORDERS_ROUTE} from "../../utils/consts";
+import {observer} from "mobx-react-lite";
 
-export default function Navbar(){
+const Navbar = observer(() => {
+    const {user} = useContext(Context)
 return (
     <header>
-    <Link to="/main" className="site-title">Meta`snaks</Link>
+    <Link to={CATALOG_ROUTE} className="site-title">Meta`snaks</Link>
         <nav>
-            <ul>            
+            <ul>
                 <li>
-                <CustomLink to="/">Catalog</CustomLink>
-                <CustomLink to="/contacts">Contacts</CustomLink>
-                <CustomLink to="/account">Account</CustomLink>
-                </li>
-                <li>
-                <CustomLink to="/orders">Orders</CustomLink>
-                <Link to="/login">Log Out</Link>
-                <CustomLink to="/cart">Cart</CustomLink>
-                </li>
+                <CustomLink to={CATALOG_ROUTE}>Catalog</CustomLink>
+                    {user.isAuth ? (
+                        <>
+
+                <CustomLink to={ACCOUNT_ROUTE}>Account</CustomLink>
+                <li>  <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Log Out</Link></li>
+                <CustomLink to={ORDERS_ROUTE}>Orders</CustomLink>
+                <CustomLink to={CART_ROUTE}>Cart</CustomLink>
+
+                        </>
+                       ) : (
+                <>
+                    <CustomLink to={CONTACT_ROUTE}>Contacts</CustomLink>
+                   <li> <Link to={LOGIN_ROUTE}>Log In</Link> </li>
+                </>
+                )}
+              </li>
             </ul>
 
         </nav>
     </header>
- )
-}
+ );
+});
+
+export default Navbar;
 
 function CustomLink({to, children, ...props}){
 const resolvedpath = useResolvedPath(to)

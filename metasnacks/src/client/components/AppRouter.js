@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
 import LogIn from "../pages/LoginWindow/logIn";
 import Registration from "../pages/RegistrationWindow/Registration";
@@ -10,24 +10,24 @@ import Account from "../pages/AccountPage/Account";
 import Cart from "../pages/CartPage/Cart";
 import {authRoutes, publicRoutes} from "../routes";
 import {CATALOG_ROUTE} from "../utils/consts";
+import {Context} from "../../index";
 
 const AppRouter = () => {
-    const isAuth = false
+    const {user} = useContext(Context)
+    console.log(user)
     return (
         <Routes>
             <Route path="*" element={
                 <>
-                <Navbar />
                     <div className="container">
                         <Routes>
-                            <Route path={CATALOG_ROUTE} element={<Catalog/>}/>
 
-                            {isAuth && authRoutes.map(({path, Component}) =>
-                             <Route key={path} path={path} element={Component} exact/>
+                            {user.isAuth && authRoutes.map(({path, Component}) =>
+                             <Route key={path} path={path} element={<Component/>} exact/>
                             )}
 
                             {publicRoutes.map(({path, Component}) =>
-                                <Route key={path} path={path} element={Component} exact/>
+                                <Route key={path} path={path} element={<Component/>} exact/>
                             )}
 
                         </Routes>
