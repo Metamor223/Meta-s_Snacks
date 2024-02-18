@@ -2,14 +2,62 @@ import {makeAutoObservable} from "mobx";
 
 export default class ProductStore{
     constructor() {
-        this._productName = {}
+        this._product = [{
+            id: 1,
+                img: "/img/firstpackcracks.jpg",
+                name: 'Product 1',
+                category: 'Hazelnuts',
+                description: '',
+                price: '10$'
+        },
+        {
+            id: 2,
+                img: "/img/secondpackcracks.png",
+            name: 'Product 2',
+            category: 'Hazelnuts',
+            description: '',
+            price: '20$'
+        },
+        {
+            id: 3,
+                img: "/img/secondpackcracks.png",
+            name: 'Product 3',
+            category: 'Crackers',
+            description: '',
+            price: '30$'
+        },
+        {
+            id: 4,
+                img: "/img/secondpackcracks.png",
+            name: 'Product 4',
+            category: 'Chips',
+            description: 'Чипсы Lays с луком готовятся из натурального картофеля, который обжаривают в подсолнечном масле с добавлением специй. Состав: Картофель, растительное масло, ароматизатор (луковый порошок, соль, сахар, порошок молочной сыворотки, усилители вкуса и аромата (глутамат натрия 1 - замещенный, 5 - рибонуклеотиды натрия 2 - замещенные), сухое обезжиренное молоко, лактоза (из молока), вкусоароматические вещества, сырный порошок, регулятор кислотности (лимонная кислота), краситель (аннато), чесночный порошок). Пищевая ценность на 100 г продукта: белки - 6,5 г, жиры - 30 г, углеводы - 53 г. Энергетическая ценность на 100 г продукта: 510 ккал. Вес: 80 г. Условия хранения: при температуре не выше 20 °С.',
+            price: '40$'
+        },
+        {
+            id: 5,
+                img: "/img/secondpackcracks.png",
+            name: 'Product 5',
+            category: 'Crackers',
+            description: '',
+            price: '40$'
+        },
+        {
+            id: 6,
+                img: "/img/secondpackcracks.png",
+            name: 'Product 6',
+            category: 'Crackers',
+            description: '',
+            price: '40$'
+        }]
        this._typeProduct = {}
        this._description = {}
+        this._selectedType={}
         makeAutoObservable(this)
     }
 
-    setProductName(productName){
-        this._productName = productName
+    setProduct(product){
+        this._product = product
     }
     setTypeProduct(typeProduct){
         this._typeProduct = typeProduct
@@ -17,14 +65,20 @@ export default class ProductStore{
     setDescription(description){
         this._description = description
     }
+    setSelectedType(typeProduct){
+        this._selectedType = typeProduct
+    }
 
-    get productName(){
-        return this._productName
+    get product(){
+        return this._product
     }
     get typeProduct(){
         return this._typeProduct
     }
     get description(){
         return this._description
+    }
+    get selectedType(){
+        return this._selectedType
     }
 }

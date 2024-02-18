@@ -16,12 +16,13 @@ return (
                 <CustomLink to={CATALOG_ROUTE}>Catalog</CustomLink>
                     {user.isAuth ? (
                         <>
-
+                <CustomLink to={CONTACT_ROUTE}>Contacts</CustomLink>
                 <CustomLink to={ACCOUNT_ROUTE}>Account</CustomLink>
+                            <>
                 <li>  <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Log Out</Link></li>
                 <CustomLink to={ORDERS_ROUTE}>Orders</CustomLink>
                 <CustomLink to={CART_ROUTE}>Cart</CustomLink>
-
+                            </>
                         </>
                        ) : (
                 <>

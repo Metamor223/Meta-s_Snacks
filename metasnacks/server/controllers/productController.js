@@ -7,7 +7,10 @@ class ProductController{
     async create(req, res, next) {
         try {
             const {product_id, Product_name, type_product,description} = req.body
-            const product = await Product.create({product_id, Product_name, type_product, description})
+            const {image_path} = req.files
+            let fileName = uuid.v4() + ".jpg"
+            image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const product = await Product.create({product_id, Product_name, type_product, description, image_path: fileName})
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.message))

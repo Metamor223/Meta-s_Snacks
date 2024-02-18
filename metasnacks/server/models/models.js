@@ -22,6 +22,7 @@ const Orders = sequelize.define('orders',{
 const Product = sequelize.define('product',{
     product_id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     Product_name:{type: DataTypes.STRING, allowNull:false},
+    image_path:{type: DataTypes.STRING, allowNull:false},
     type_product:{type: DataTypes.STRING, allowNull:false},
     description:{type: DataTypes.STRING, allowNull:false}
 })
@@ -29,7 +30,6 @@ const Product = sequelize.define('product',{
 const Recipes = sequelize.define('recepts',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     count:{type: DataTypes.INTEGER, allowNull:false},
-    image_path:{type: DataTypes.STRING, allowNull:false}
 })
 
 const Warehouse = sequelize.define('warehouse',{

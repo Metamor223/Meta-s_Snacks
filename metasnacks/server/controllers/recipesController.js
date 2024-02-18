@@ -7,10 +7,7 @@ class RecipesController {
     async create(req, res, next) {
         try {
             const { count, product_id, ingredint_id } = req.body
-            const { image_path } = req.files
-            let fileName = uuid.v4() + ".jpg"
-            image_path.mv(path.resolve(__dirname, '..', fileName))
-            const recipe = await Recipes.create({ product_id, ingredint_id, count, image_path: fileName })
+            const recipe = await Recipes.create({ product_id, ingredint_id, count })
             return res.json(recipe)
         }
         catch (e) {

@@ -1,10 +1,14 @@
 // Catalog.js
-import React, { useState, useEffect } from 'react';
-import ProductList from './ProductList';
+import React, {useState, useEffect, useContext} from 'react';
 import './catalog.css';
 import ProductPageInfo from './ProductPageInfo';
+import {observer} from "mobx-react-lite";
+import {Context} from "../../../index";
+import {fetchTypes} from "../../http/productAPI";
+import TypeBar from "../../components/TypeBar";
+import ProductList from "../../components/ProductList";
 
-export default function Catalog() {
+const Catalog = observer(()=> {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [displayedItems, setDisplayedItems] = useState([]);
@@ -14,7 +18,8 @@ export default function Catalog() {
   const [showProductInfo, setShowProductInfo] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const products = ProductList();
+  const {product} = useContext(Context)
+
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -40,9 +45,8 @@ export default function Catalog() {
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const slicedProducts = filterProducts(products).slice(startIndex, endIndex);
-    setDisplayedItems(slicedProducts);
-  }, [currentPage, itemsPerPage, products, selectedCategory, searchQuery]);
+    fetchTypes().then(data=>product.setTypeProduct(data))
+  }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
 
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
@@ -67,28 +71,12 @@ export default function Catalog() {
         <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
         <label>Choose category:</label>
         <ul>
-          <li onClick={() => handleCategoryChange("")}>All categories</li>
-          <li onClick={() => handleCategoryChange("Hazelnuts")}>Hazelnuts</li>
-          <li onClick={() => handleCategoryChange("Chips")}>Chips</li>
-          <li onClick={() => handleCategoryChange("Crackers")}>Crackers</li>
+         <TypeBar/>
         </ul>
       </div>
 
       <ul>
-        {displayedItems.map((product) => (
-          <div className="product" key={product.id}>
-            <li onClick={() => handleProductClick(product)}>
-              <div className="headerProduct">
-                <img src={product.img} alt={product.name} style={{ width: '13vw' }} />
-                <p>{product.name}</p>
-              </div>
-              <div className="footerProduct">
-                <p>{product.price}</p>
-                <li onClick={() => addToCart(product)}>Add to Cart</li>
-              </div>
-            </li>
-          </div>
-        ))}
+        <ProductList/>
       </ul>
 
       {showProductInfo && (
@@ -96,4 +84,6 @@ export default function Catalog() {
       )}
     </div>
   );
-}
+})
+
+export default Catalog

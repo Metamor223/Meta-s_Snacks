@@ -14,10 +14,16 @@ const LogIn = observer(() =>{
     const [password, setPassword] = useState('')
 
     const signIn = async () => {
-        let data
-        data = await login(email,password)
-        user.setUser(data)
-        user.setIsAuth(true)
+        try {
+            let data
+            data = await login(email, password)
+            user.setUser(data)
+            user.setIsAuth(true)
+        }
+        catch (e)
+        {
+            alert(e.response.data.message)
+        }
     }
 
     return (
