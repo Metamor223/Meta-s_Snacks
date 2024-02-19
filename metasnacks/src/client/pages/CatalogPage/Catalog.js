@@ -4,7 +4,7 @@ import './catalog.css';
 import ProductPageInfo from './ProductPageInfo';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
-import {fetchTypes} from "../../http/productAPI";
+import {fetchProducts, fetchTypes} from "../../http/productAPI";
 import TypeBar from "../../components/TypeBar";
 import ProductList from "../../components/ProductList";
 
@@ -45,7 +45,8 @@ const Catalog = observer(()=> {
   useEffect(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    fetchTypes().then(data=>product.setTypeProduct(data))
+    fetchTypes().then(data=>product.setTypeProduct(data));
+    // fetchProducts().then(data=>product.setProduct(data));
   }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
 
   const addToCart = (product) => {

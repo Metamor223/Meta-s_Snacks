@@ -5,7 +5,10 @@ import {Context} from "../../index";
 const ProductList = observer(() => {
 
     const {product} = useContext(Context)
-
+ // Проверяем, является ли product.typeProduct массивом перед вызовом метода map
+ if (!Array.isArray(product.product)) {
+    return null; // или другое поведение по умолчанию
+}
     return (
         <>
             {product.product.map(product => (
