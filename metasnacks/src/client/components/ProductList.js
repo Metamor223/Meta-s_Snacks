@@ -6,20 +6,17 @@ const ProductList = observer(() => {
 
     const {product} = useContext(Context)
  // Проверяем, является ли product.typeProduct массивом перед вызовом метода map
- if (!Array.isArray(product.product)) {
-    return null; // или другое поведение по умолчанию
-}
     return (
         <>
             {product.product.map(product => (
-                <div className="product" key={product.id}>
+                <div className="product" key={product.product_id}>
                     <li >
                         <div className="headerProduct">
-                            <img src={product.img} alt={product.name} style={{ width: '13vw' }} />
-                            <p>{product.name}</p>
+                            <img src={process.env.REACT_APP_META_SNACKS + "/" + product.image_path} alt={product.Product_name} style={{ width: '13vw' }}/>
+                            <p>{product.Product_name}</p>
                         </div>
                         <div className="footerProduct">
-                            <p>{product.price}</p>
+                            <p>{product.price}р</p>
                             <li>Add to Cart</li>
                         </div>
                     </li>

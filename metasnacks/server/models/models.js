@@ -24,7 +24,8 @@ const Product = sequelize.define('product',{
     Product_name:{type: DataTypes.STRING, allowNull:false},
     image_path:{type: DataTypes.STRING, allowNull:false},
     type_product:{type: DataTypes.STRING, allowNull:false},
-    description:{type: DataTypes.STRING, allowNull:false}
+    description:{type: DataTypes.STRING, allowNull:false},
+    price:{type: DataTypes.INTEGER, allowNull:false}
 })
 
 const Recipes = sequelize.define('recepts',{

@@ -46,7 +46,7 @@ const Catalog = observer(()=> {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     fetchTypes().then(data=>product.setTypeProduct(data));
-    // fetchProducts().then(data=>product.setProduct(data));
+    fetchProducts().then(data=>product.setProduct(data.rows));
   }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
 
   const addToCart = (product) => {

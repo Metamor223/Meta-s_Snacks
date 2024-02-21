@@ -4,12 +4,7 @@
     border: #00dfc4 solid 3px;
     border-radius: 10px;
     color: #00dfc4;
-    transition: .5s;
-}
-
-.product:hover{
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    cursor: pointer;
 }
 
 .headerProduct{
@@ -22,6 +17,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.footerProduct li{
+    cursor: pointer;
 }
 
 .catalogAppearance{
