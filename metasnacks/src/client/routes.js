@@ -9,7 +9,7 @@ import {
 } from "./utils/consts";
 
 import Cart from "./pages/CartPage/Cart";
-import Admin from "./pages/AdminPage/Admin";
+import AdminPage from "./pages/AdminPage/Admin";
 import LogIn from "./pages/LoginWindow/logIn";
 import Registration from "./pages/RegistrationWindow/Registration";
 import Orders from "./pages/OrdersForFactory/Orders";
@@ -20,7 +20,7 @@ import Contacts from "./pages/ContactsPage/Contacts";
 export const authRoutes =  [
     {
         path: ADMIN_ROUTE,
-        Component: Admin
+        Component: AdminPage
     },
     {
         path: CART_ROUTE,

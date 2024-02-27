@@ -2,8 +2,17 @@ import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import {Context} from "../../../index";
 import {useContext} from "react";
-import {ACCOUNT_ROUTE, CART_ROUTE, CATALOG_ROUTE, CONTACT_ROUTE, LOGIN_ROUTE, ORDERS_ROUTE} from "../../utils/consts";
+import {
+    ACCOUNT_ROUTE,
+    ADMIN_ROUTE,
+    CART_ROUTE,
+    CATALOG_ROUTE,
+    CONTACT_ROUTE,
+    LOGIN_ROUTE,
+    ORDERS_ROUTE
+} from "../../utils/consts";
 import {observer} from "mobx-react-lite";
+import AdminPage from "../AdminPage/Admin";
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
@@ -30,6 +39,9 @@ return (
                    <li> <Link to={LOGIN_ROUTE}>Log In</Link> </li>
                 </>
                 )}
+                    {user.role === 'ADMIN' && (
+                        <CustomLink to={ADMIN_ROUTE}>Admin</CustomLink>
+                    )}
               </li>
             </ul>
 
