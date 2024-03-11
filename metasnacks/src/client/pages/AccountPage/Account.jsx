@@ -1,7 +1,7 @@
 export default function Account(){
 return(
+<>
+    <p>привет</p>
+</>
 
-<div class="">
-</div>
-
-);}
+)}

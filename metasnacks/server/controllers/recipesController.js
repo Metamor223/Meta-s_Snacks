@@ -6,8 +6,8 @@ const ApiError = require('../error/ApiError');
 class RecipesController {
     async create(req, res, next) {
         try {
-            const { count, product_id, ingredint_id } = req.body
-            const recipe = await Recipes.create({ product_id, ingredint_id, count })
+            const { count, product_id, ingredient_id } = req.body
+            const recipe = await Recipes.create({ product_id, ingredient_id, count })
             return res.json(recipe)
         }
         catch (e) {
@@ -15,25 +15,26 @@ class RecipesController {
         }
     }
     async getAll(req, res) {
-        let { product_id, ingredint_id, limit, page } = req.query
+        let { product_id, ingredient_id, limit, page } = req.query
         page = page || 1
         limit = limit || 100
         let offset = page * limit - limit
         let recepts;
-        if (!product_id && !ingredint_id) {
+        if (!product_id && !ingredient_id) {
             recepts = await Recipes.findAndCountAll({limit,offset})
         }
-        if (!product_id && ingredint_id) {
-            recepts = await Recipes.findAndCountAll({ where: { ingredint_id }, limit, offset })
+        if (!product_id && ingredient_id) {
+            recepts = await Recipes.findAndCountAll({ where: { ingredient_id }, limit, offset })
         }
-        if (product_id && !ingredint_id) {
+        if (product_id && !ingredient_id) {
             recepts = await Recipes.findAndCountAll({ where: { product_id }, limit, offset })
         }
-        if (product_id && ingredint_id) {
-            recepts = await Recipes.findAndCountAll({ where: { product_id, ingredint_id }, limit, offset })
+        if (product_id && ingredient_id) {
+            recepts = await Recipes.findAndCountAll({ where: { product_id, ingredient_id }, limit, offset })
         }
         return res.json(recepts)
     }
+
     async getOne(req, res) {
         const {id} = req.params
         const recipe = await Recipes.findOne(

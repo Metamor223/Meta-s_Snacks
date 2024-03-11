@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {LOGIN_ROUTE} from "../../utils/consts";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
-import {login, registration} from "../../http/userAPI";
+import {registration} from "../../http/userAPI";
 
 const Registration = observer(() =>{
     const {user} = useContext(Context)

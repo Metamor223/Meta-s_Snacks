@@ -1,0 +1,19 @@
+.actionList li{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2pc;
+    cursor: pointer;
+    padding: 15px 30px 15px 20px;
+    width: 30%;
+    font-size: 25px;
+    list-style-type: none;
+    border: solid 1px #00dfc4;
+    border-radius: 5px;
+    color:#00dfc4;
+    transition: 0.5s;
+}
+
+.actionList li:hover{
+    background: #00dfc4;
+    color:#1d2b3a;
+}
