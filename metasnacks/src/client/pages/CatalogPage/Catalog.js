@@ -7,6 +7,7 @@ import {Context} from "../../../index";
 import {fetchProducts, fetchTypes} from "../../http/productAPI";
 import TypeBar from "../../components/TypeBar";
 import ProductList from "../../components/ProductList";
+import Pages from "../../components/Pages";
 
 const Catalog = observer(()=> {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,8 +26,8 @@ const Catalog = observer(()=> {
     setSelectedCategory(category);
   };
 
-  const filterProducts = (products) => {
-    let filteredProducts = products;
+  const filterProducts = () => {
+    let filteredProducts = product;
 
     if (selectedCategory) {
       filteredProducts = filteredProducts.filter((product) => product.category === selectedCategory);
@@ -46,8 +47,18 @@ const Catalog = observer(()=> {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     fetchTypes().then(data=>product.setTypeProduct(data));
-    fetchProducts().then(data=>product.setProduct(data.rows));
-  }, [currentPage, itemsPerPage, selectedCategory, searchQuery]);
+    fetchProducts(null,8, product.page).then(data=> {
+      product.setProduct(data.rows)
+      product.setTotalCount(data.count)
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchProducts(product.selectedType.id,8, product.page).then(data=> {
+      product.setProduct(data.rows)
+      product.setTotalCount(data.count)
+    });
+  }, [product.page,product.selectedType]);
 
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
@@ -79,10 +90,12 @@ const Catalog = observer(()=> {
       <ul>
         <ProductList/>
       </ul>
-
+      <Pages/>
       {showProductInfo && (
         <ProductPageInfo product={selectedProduct} onClose={handleCloseProductInfo} />
       )}
+
+
     </div>
   );
 })

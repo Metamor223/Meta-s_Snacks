@@ -26,7 +26,7 @@ class UserController{
        }
        const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({email, organisation_name, itn, password: hashPassword, role})
-       // const orders = await Orders.create({user_id: user.user_id})
+       // const orders = await Orders.create({userId: user.id})
         const token = generateJwt(user.id, user.email, user.organisation_name, user.itn, user.role)
         return res.json({token})
     }
@@ -46,8 +46,7 @@ class UserController{
     }
 
     async check(req,res,next){
-     const token = generateJwt(req.user.id, req.user.email, req.user.role)
-        res.json({token})
+        res.json({message:"ALL RIGHT"})
     }
 }
 

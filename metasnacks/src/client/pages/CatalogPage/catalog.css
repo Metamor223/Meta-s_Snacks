@@ -24,8 +24,10 @@
 }
 
 .catalogAppearance{
-width: 100%;
-display: flex;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .catalogAppearance ul{
@@ -76,6 +78,16 @@ transition: 0.5s;
 .categories li:hover{
     background-color: #00dfc4;
     color:#1d2b3a
+}
+
+.categories li:hover:not(.active) {
+    background-color: #00dfc4;
+    color: #1d2b3a;
+}
+
+.categories li.active {
+    background-color: #00dfc4;
+    color: #1d2b3a;
 }
 
 .catalogAppearance ul{

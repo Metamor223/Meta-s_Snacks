@@ -13,14 +13,13 @@ class TypeController{
     }
 
     async deleteOne(req,res){
-        const {id} = parseInt(req.params.id,10)
+        const id = parseInt(req.params.id,10)
         try {
-            const product = await Product.destroy({
-                where: { product_id: {id} }
+            const type = await TypeOfProduct.destroy({
+                where: {id: id}
             });
-            if (product) {
-                // Запись была успешно удалена
-                return res.json({ message: 'Product deleted successfully' });
+            if (type) {
+               return res.json(type)
             } else {
                 // Запись с указанным product_id не была найдена
                 return res.status(404).json({ error: 'Product not found' });

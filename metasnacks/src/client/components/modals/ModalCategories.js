@@ -1,33 +1,30 @@
 import React, {useState} from 'react';
 import "./modal.css";
 import {createType} from "../../http/productAPI";
+import AddCategories from "../AddDeleteEdit/AddCategories";
+import DeleteCategories from "../AddDeleteEdit/DeleteCategories";
 
 const ModalCategories = ({active,setActive}) => {
-    const [value, setValue] = useState('')
-    const addCategory = () =>{
-        createType({name_type:value}).then(data=>{setValue('')})
-        setActive()
-    }
+    const [action, setAction] = useState(null); // Состояние для отслеживания текущего действия в модальном окне
+
+    const handleActionChange = (newAction) => {
+        setAction(newAction); // Обновляем состояние текущего действия
+    };
 
     return (
         <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
             <div className="modal_content" onClick={e=>e.stopPropagation()}>
                 <h2>Categories editing window</h2>
                 <div className="optionsOfDataBase">
-                    <li>Add</li>
-                    <li>Edit</li>
-                    <li>Delete item</li>
+                    <li onClick={() => handleActionChange('ADD')}>Add</li>
+                    <li onClick={() => handleActionChange('DELETE')}>Delete</li>
                 </div>
-                <div className="CategorieInput">
-                    <input
-                        placeholder="Enter categorie name"
-                        value={value}
-                        onChange={e => setValue(e.target.value)}/>
-                </div>
-                <div className="ModalsButton">
-                    <li onClick={setActive}>Close window</li>
-                    <li onClick={addCategory}>Add product</li>
-                </div>
+                {action === 'ADD' && (
+                    <AddCategories setActive={setActive} />
+                )}
+                {action === 'DELETE' && (
+                    <DeleteCategories setActive={setActive}/>
+                )}
             </div>
         </div>
     );
