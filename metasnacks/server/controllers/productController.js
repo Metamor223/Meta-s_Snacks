@@ -70,14 +70,14 @@ class ProductController{
         return res.json(product)
     }
     async deleteOne(req,res){
-        const {product_id} = parseInt(req.params.id,10)
+        const product_id = parseInt(req.params.id,10)
         try {
             const product = await Product.destroy({
-                where: { product_id: {product_id} }
+                where: { product_id: product_id }
             });
             if (product) {
                 // Запись была успешно удалена
-                return res.json({ message: 'Product deleted successfully' });
+                return res.json(product);
             } else {
                 // Запись с указанным product_id не была найдена
                 return res.status(404).json({ error: 'Product not found' });
