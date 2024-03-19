@@ -8,7 +8,7 @@ import AddProducts from "../AddDeleteEdit/AddProducts";
 import EditProducts from "../AddDeleteEdit/EditProducts";
 import DeleteProducts from "../AddDeleteEdit/DeleteProducts";
 
-const ModalProducts = observer(({active,setActive}) => {
+const ModalProducts = ({active,setActive}) => {
 
     const [action, setAction] = useState(null);
     const handleActionChange = (newAction) => {
@@ -28,14 +28,14 @@ const ModalProducts = observer(({active,setActive}) => {
                     <AddProducts setActive={setActive} />
                 )}
                 {action === 'EDIT' && (
-                    <EditProducts/>
+                    <EditProducts setActive={setActive}/>
                 )}
                 {action === 'DELETE' && (
-                    <DeleteProducts/>
+                    <DeleteProducts setActive={setActive}/>
                 )}
             </div>
         </div>
     );
-});
+};
 
 export default ModalProducts;

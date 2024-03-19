@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import "./logIn.css";
 import {CATALOG_ROUTE, REGISTRATION_ROUTE} from "../../utils/consts";
 import {login} from "../../http/userAPI";

@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../../index";
 import {createProduct, fetchTypes} from "../../http/productAPI";
+import {observer} from "mobx-react-lite";
 
-const AddProducts = ({setActive}) => {
+const AddProducts = observer(({setActive}) => {
     const {product} = useContext(Context)
 
     const [name,setName] = useState('')
@@ -77,6 +78,6 @@ const AddProducts = ({setActive}) => {
             </form>
         </div>
     );
-};
+});
 
 export default AddProducts;

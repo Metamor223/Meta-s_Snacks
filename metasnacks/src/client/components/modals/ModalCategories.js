@@ -3,6 +3,7 @@ import "./modal.css";
 import {createType} from "../../http/productAPI";
 import AddCategories from "../AddDeleteEdit/AddCategories";
 import DeleteCategories from "../AddDeleteEdit/DeleteCategories";
+import {observer} from "mobx-react-lite";
 
 const ModalCategories = ({active,setActive}) => {
     const [action, setAction] = useState(null); // Состояние для отслеживания текущего действия в модальном окне
