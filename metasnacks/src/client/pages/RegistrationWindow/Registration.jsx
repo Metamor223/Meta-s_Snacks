@@ -19,6 +19,7 @@ const Registration = observer(() =>{
         data = await registration(email,organisationName,itn,password)
         user.setUser(data)
     }
+
     return(
      <div className="containerRegistration" >
         <h1>Registration</h1>
@@ -45,7 +46,7 @@ const Registration = observer(() =>{
                 <span>ITN</span>
             </label>
             <label className="field__item">
-                <input type="text"
+                <input type="password"
                        required name="password"
                        value={password}
                        onChange={e => setPassword(e.target.value)}/>
