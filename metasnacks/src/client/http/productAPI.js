@@ -36,6 +36,11 @@ export const fetchOneProduct = async (product_id) => {
     return data
 }
 
+export const deleteProduct = async (id) =>{
+    const {data} = await $authHost.delete('api/product/' + id)
+    return data
+}
+
 export const createRecipe = async (recipe) => {
     const {data} = await $authHost.post('api/recepts' + recipe)
     return data
