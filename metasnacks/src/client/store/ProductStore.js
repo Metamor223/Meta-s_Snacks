@@ -6,6 +6,7 @@ export default class ProductStore{
         this._typeProduct = {}
         this._description = {}
         this._selectedType={}
+        this._selectedProduct={}
         this._page = 1
         this._totalCount = 0
         this._limit = 3
@@ -25,6 +26,9 @@ export default class ProductStore{
         this.setPage(1)
         this._selectedType = typeProduct
     }
+    setSelectedProduct(product){
+        this._selectedProduct = product
+    }
     setPage(page){
         this._page = page
     }
@@ -43,6 +47,9 @@ export default class ProductStore{
     }
     get selectedType(){
         return this._selectedType
+    }
+    get selectedProduct(){
+        return this._selectedProduct
     }
     get totalCount(){
         return this._totalCount
