@@ -135,3 +135,25 @@ h2{
 .modalForm h2{
     margin-top: 20px;
 }
+
+.SelectionProduct{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.SelectionProduct ul{
+    margin-left: 10%;
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.SelectionProduct li{
+    height: max-content;
+    font-size: 20px;
+}
+
+.product li{
+    width: 100%;
+}

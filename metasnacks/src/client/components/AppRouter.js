@@ -36,29 +36,6 @@ const AppRouter = () => {
                 }
              />
         </Routes>
-        // <Routes>
-        //     <Route path="/" element = {<Navigate to="/login"/>}/>
-        //     <Route path="/login" element={<LogIn />} />
-        //     <Route path="/registration" element = {<Registration/>}/>
-        //     <Route
-        //         path='/main/*'
-        //         element={
-        //             <>
-        //                 <Navbar />
-        //                 <div className="container">
-        //                     <Routes>
-        //                         <Route index element={<Navigate to="/main/catalog"/>}/>
-        //                         <Route path='/catalog' element = {<Catalog/>}/>
-        //                         <Route path='contacts' element = {<Contacts/>}/>
-        //                         <Route path='orders' element = {<Orders/>}/>
-        //                         <Route path='account' element = {<Account/>}/>
-        //                         <Route path='cart' element = {<Cart/>}/>
-        //                     </Routes>
-        //                 </div>
-        //             </>
-        //         }
-        //     />
-        // </Routes>
     );
 };
 
