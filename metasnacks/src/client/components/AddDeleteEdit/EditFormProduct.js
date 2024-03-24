@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {changeProduct, fetchOneProduct, fetchProducts} from "../../http/productAPI";
+import {changeProduct, fetchOneProduct, fetchProducts, fetchTypes} from "../../http/productAPI";
 import {useParams} from "react-router-dom";
 
 const EditFormProduct = ({setActive}) => {
@@ -18,10 +18,19 @@ const EditFormProduct = ({setActive}) => {
     const [file, setFile] = useState(null);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
+    const [type, setType] = useState(0);
     const {id} = useParams()
 
     useEffect(() => {
-        fetchOneProduct(id).then(data=> setSelectedProduct(data))
+        fetchTypes().then(data=>product.setTypeProduct(data));
+        fetchOneProduct(id).then(data=>{
+            setSelectedProduct(data);
+            setFile(data.file)
+            setName(data.name);
+            setDescription(data.description);
+            setPrice(data.price);
+            setType(data.typeProduct);
+            })
     }, []);
 
     const selectFile = e => {
@@ -49,13 +58,13 @@ const EditFormProduct = ({setActive}) => {
                     <h2>Change Product</h2>
                     <input
                         placeholder="Enter product name"
-                        value={selectedProduct.name}
+                        value={name}
                         onChange={e => setName(e.target.value)}
                     />
                     <input type="file" id="fileInput" onChange={selectFile}/>
                     <p>Select product category:
                         <select>
-                            {selectedProduct.typeProduct.map(type =>
+                            {selectedProduct.typeProduct && selectedProduct.typeProduct.map(type =>
                                 <option
                                     onClick={() => product.setSelectedType(type)}
                                     key={type.id}
@@ -67,12 +76,12 @@ const EditFormProduct = ({setActive}) => {
                     </p>
                     <input
                         placeholder="Enter product description"
-                        value={selectedProduct.description}
+                        value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
                     <input
                         placeholder="Enter product price"
-                        value={selectedProduct.price}
+                        value={price}
                         onChange={e => setPrice(Number(e.target.value))}
                     />
                     <div className="ModalsButton">

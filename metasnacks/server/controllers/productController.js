@@ -64,13 +64,13 @@ class ProductController{
         const product = await Product.findOne(
             {
                 where:{product_id},
-                include: [{model: Product, as: 'description'}]
             }
         );
         return res.json(product)
     }
+
     async deleteOne(req,res){
-        const product_id = parseInt(req.params.id,10)
+        const product_id = parseInt(req.params.product_id,10)
         try {
             const product = await Product.destroy({
                 where: { product_id: product_id }

@@ -24,7 +24,7 @@
     border-radius: 12px;
     background-color: #1d2b3a;
     height: max-content;
-    max-height: 80%;
+    max-height: 90%;
     width: 35%;
 }
 
@@ -84,6 +84,11 @@ p{
 
 h2{
     color:#00dfc4;
+}
+
+h3 {
+    color:#00dfc4;
+    margin:2% 0 2% 0;
 }
 
 .category{
@@ -154,6 +159,47 @@ h2{
     font-size: 20px;
 }
 
-.product li{
-    width: 100%;
+.Fetch_product{
+    margin: 0;
+    padding: 0;
 }
+
+.Fetch_product li{
+    cursor: pointer;
+    width: 100%;
+    list-style-type: none;
+    color:#00dfc4;
+    transition: 0.5s;
+}
+
+.Fetch_product li:hover{
+    background-color: #00dfc4;
+    color:#1d2b3a;
+    .headerProduct p{
+        transition: 0.5s;
+        color: #1d2b3a;
+    }
+    .footerProduct p{
+        transition: 0.5s;
+        color: #1d2b3a;
+    }
+}
+
+.Fetch_product li.active {
+    background-color: #00dfc4;
+    color: #1d2b3a;
+    .headerProduct p{
+        transition: 0.5s;
+        color: #1d2b3a;
+    }
+    .footerProduct p{
+        transition: 0.5s;
+        color: #1d2b3a;
+    }
+}
+
+.Fetch_product li:hover:not(.active) {
+    background-color: #00dfc4;
+    color: #1d2b3a;
+}
+

@@ -14,25 +14,30 @@ const EditProducts = observer(({setActive}) => {
         fetchProducts().then(data => product.setProduct(data.rows));
     }, []);
 
-    const editProduct = (product) => {
-        setSelectedProduct(product);
+    const editProduct = () => {
         setEditingProduct(true);
     };
 
     return (
         <div>
-            {editingProduct ? <EditFormProduct/> : (
+            {editingProduct ? <EditFormProduct /> : (
                 <div className="SelectionProduct">
                     <ul>
-                        {product.product.map(product => (
-                            <div className="product" key={product.product_id}>
-                                <div className="headerProduct">
-                                    <img src={process.env.REACT_APP_META_SNACKS + "/" + product.image_path} alt={product.Product_name} style={{ width: '13vw' }}/>
-                                    <p>{product.Product_name}</p>
-                                </div>
-                                <div className="footerProduct">
-                                    <p>{product.price}р</p>
-                                </div>
+                        {product.product.map(prod => (
+                            <div className="Fetch_product">
+                                <li
+                                    className={prod .product_id === product.selectedProduct.product_id ? "ListItem active" : "ListItem"}
+                                    onClick={()=> product.setSelectedProduct(prod)}
+                                    key={prod.product_id}
+                                >
+                                    <div className="headerProduct">
+                                        <img src={process.env.REACT_APP_META_SNACKS + "/" + prod.image_path} alt={prod.Product_name} style={{ width: '13vw' }}/>
+                                        <p>{prod.Product_name}</p>
+                                    </div>
+                                    <div className="footerProduct">
+                                        <p>{prod.price}р</p>
+                                    </div>
+                                </li>
                             </div>
                         ))}
                     </ul>

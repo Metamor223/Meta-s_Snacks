@@ -1,20 +1,21 @@
 import {observer} from "mobx-react-lite";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {Context} from "../../index";
+import {fetchProducts} from "../http/productAPI";
 
-const TypeBar = observer(()=> {
+const TypeBar = observer((removeCategory)=> {
     const {product} = useContext(Context)
 
     const handleCategoryClick = (type) => {
-        // Если текущая выбранная категория совпадает с категорией, на которую нажали,
-        // то сбрасываем выбранную категорию
         if (type.id === product.selectedType.id) {
-            product.setSelectedType(null);
-        } else {
-            // Иначе выбираем новую категорию
-            product.setSelectedType(type);
+            useEffect(() => {
+                fetchProducts(null, 8, product.page).then(data => {
+                    product.setProduct(data.rows)
+                    product.setTotalCount(data.count)
+                });
+            }, [])
         }
-    };
+    }
 
     // Проверяем, является ли product.typeProduct массивом перед вызовом метода map
     if (!Array.isArray(product.typeProduct)) {

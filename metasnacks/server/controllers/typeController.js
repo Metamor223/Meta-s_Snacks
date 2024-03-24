@@ -22,7 +22,7 @@ class TypeController{
                return res.json(type)
             } else {
                 // Запись с указанным product_id не была найдена
-                return res.status(404).json({ error: 'Product not found' });
+                return res.status(404).json({ error: 'Category not found' });
             }
         } catch (error) {
             console.error('Error deleting product:', error);
