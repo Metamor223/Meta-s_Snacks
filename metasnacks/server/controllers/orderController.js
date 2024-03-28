@@ -1,14 +1,69 @@
-const {Orders} = require('../models/models')
+const {Orders, Product} = require('../models/models')
 class OrderController{
-    async create(req,res){
-        const {user_id,product_id,amount, order_date, price} = req.body
-        const order = await Orders.create({user_id,product_id,amount, order_date, price})
-        return res.json(order)
+    async createOrder(req,res){
+        try {
+            const {detailsOrder, detailsCart, order_date, price, issued, userId} = req.body
+            const {cart} = req.params;
+                const [_,[updatedOrder]] = await Orders.update(
+                    {
+                        detailsOrder,
+                        detailsCart,
+                        order_date,
+                        price,
+                        issued
+                    },
+                    {
+                        where: {userId: userId},
+                        returning: true
+                    }
+                    );
+            if (updatedOrder[0] === 1) {
+                return res.json(updatedOrder[1][0]);
+            }
+        }
+        catch (e)
+        {
+            console.log(e)
+        }
     }
+
+    async createCart(req,res){
+        try {
+            const {userId, detailsCart} = req.body
+            const cart = await Orders.create({detailsCart, userId})
+            return res.json(cart)
+        }
+        catch (e)
+        {
+            return res.json(e)
+        }
+    }
+
     async getAll(req,res){
-        const orders = await Orders.findAll()
-        return res.json(orders)
+        try {
+            const {issued} = req.params
+            if (!issued) {
+                const cart = await Orders.findAll(
+                    {
+                        where: {issued: false},
+                    }
+                );
+                return res.json(cart)
+            } else {
+                const orders = await Orders.findAll(
+                    {
+                        where: {issued: true},
+                    }
+                );
+                return res.json(orders)
+            }
+        }
+        catch (e) {
+            return res.json(e)
+        }
     }
+
+    //переписать метод на "из разряда PATCH после удаления записи из CartDetails"
     async deleteOne(req,res){
         const {id} = req.params
         try {

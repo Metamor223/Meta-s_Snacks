@@ -5,8 +5,8 @@ export const createType = async (type) => {
     return data
 }
 
-export const deleteType = async (id) =>{
-    const {data} = await $authHost.delete('api/type/' + id)
+export const deleteType = async (product_id) =>{
+    const {data} = await $authHost.delete('api/type/' + product_id)
     return data
 }
 

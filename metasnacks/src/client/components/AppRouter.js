@@ -1,15 +1,6 @@
 import React, {Component, useContext} from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
-import LogIn from "../pages/LoginWindow/logIn";
-import Registration from "../pages/RegistrationWindow/Registration";
-import Navbar from "../pages/header.js/navbar";
-import Catalog from "../pages/CatalogPage/Catalog";
-import Contacts from "../pages/ContactsPage/Contacts";
-import Orders from "../pages/OrdersForFactory/Orders";
-import Account from "../pages/AccountPage/Account";
-import Cart from "../pages/CartPage/Cart";
+import {Route, Routes} from "react-router-dom";
 import {authRoutes, publicRoutes} from "../routes";
-import {CATALOG_ROUTE} from "../utils/consts";
 import {Context} from "../../index";
 
 const AppRouter = () => {

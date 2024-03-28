@@ -35,7 +35,6 @@ const AddProducts = observer(({setActive}) => {
         for (const [key, value] of formData.entries()) {
             formDataObject[key] = value;
         }
-
         console.log(formDataObject);
         createProduct(formData).then(data => setActive())
     }
@@ -50,7 +49,7 @@ const AddProducts = observer(({setActive}) => {
                 />
                 <input type="file" id="fileInput" onChange={selectFile}/>
                 <p>Select product category:
-                    <select>
+                    <select onChange={e => product.setSelectedType(e.target.value)}>
                         {product.typeProduct.map(type=>
                             <option
                                 onClick={()=> product.setSelectedType(type)}

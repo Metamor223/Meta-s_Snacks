@@ -10,12 +10,13 @@ const User = sequelize.define('user',{
     role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
-const Orders = sequelize.define('orders',{
+const Orders = sequelize.define('order',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    user_id:{type: DataTypes.INTEGER, allowNull:false},
-    amount: {type: DataTypes.INTEGER, allowNull:false},
+    detailsOrder: {type: DataTypes.STRING},
+    detailsCart: {type: DataTypes.STRING, allowNull:false},
+    price:{type: DataTypes.DOUBLE},
     order_date:{type: DataTypes.DATE},
-    price:{type: DataTypes.DOUBLE, allowNull:false}
+    issued:{type: DataTypes.BOOLEAN}
 })
 
 const Product = sequelize.define('product',{

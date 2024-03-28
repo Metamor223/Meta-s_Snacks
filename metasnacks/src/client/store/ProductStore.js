@@ -5,8 +5,8 @@ export default class ProductStore{
         this._product = []
         this._typeProduct = {}
         this._description = {}
-        this._selectedType={}
-        this._selectedProduct={}
+        this._selectedType = {}
+        this._selectedProduct = {}
         this._page = 1
         this._totalCount = 0
         this._limit = 3
@@ -35,7 +35,6 @@ export default class ProductStore{
     setTotalCount(count){
         this._totalCount = count
     }
-
     get product(){
         return this._product
     }

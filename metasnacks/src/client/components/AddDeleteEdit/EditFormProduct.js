@@ -2,36 +2,33 @@ import React, {useEffect, useState} from 'react';
 import {changeProduct, fetchOneProduct, fetchProducts, fetchTypes} from "../../http/productAPI";
 import {useParams} from "react-router-dom";
 
-const EditFormProduct = ({setActive}) => {
+const EditFormProduct = ({setActive,selectedProduct}) => {
 
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState(selectedProduct)
 
-    const [selectedProduct, setSelectedProduct] = useState({
-        name: '',
-        file: null,
-        description: '',
-        price: 0,
-        typeProduct: []
-    });
+    const [name,setName] = useState('')
+    const [file,setFile] = useState(null)
+    const [description,setDescription] = useState('')
+    const [price,setPrice] = useState(0)
 
-    const [name, setName] = useState('');
-    const [file, setFile] = useState(null);
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
-    const [type, setType] = useState(0);
     const {id} = useParams()
 
     useEffect(() => {
-        fetchTypes().then(data=>product.setTypeProduct(data));
-        fetchOneProduct(id).then(data=>{
-            setSelectedProduct(data);
-            setFile(data.file)
-            setName(data.name);
-            setDescription(data.description);
-            setPrice(data.price);
-            setType(data.typeProduct);
-            })
-    }, []);
+        fetchTypes().then(data=>product.setProduct({...product, typeProduct: data}));
+        if(id){
+            fetchOneProduct(id).then(data => setProduct(data))
+        }
+
+    }, [id,product]);
+
+    useEffect(() => {
+        if(selectedProduct){
+            setName(selectedProduct.Product_name);
+            setDescription(selectedProduct.description);
+            setPrice(selectedProduct.price);
+            setFile(selectedProduct.image_path);
+        }
+    }, [selectedProduct]);
 
     const selectFile = e => {
         setFile(e.target.files[0]);
@@ -64,12 +61,12 @@ const EditFormProduct = ({setActive}) => {
                     <input type="file" id="fileInput" onChange={selectFile}/>
                     <p>Select product category:
                         <select>
-                            {selectedProduct.typeProduct && selectedProduct.typeProduct.map(type =>
+                            {product.typeProduct && (
                                 <option
-                                    onClick={() => product.setSelectedType(type)}
-                                    key={type.id}
+                                    onClick={() => product.setSelectedType({...product, selectedType: product.typeProduct})}
+                                    key={product.typeProduct.id}
                                 >
-                                    {type.name_type}
+                                    {product.typeProduct.name_type}
                                 </option>
                             )}
                         </select>

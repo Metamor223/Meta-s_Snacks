@@ -22,10 +22,10 @@ const DeleteProducts = observer(({setActive}) => {
         <h3>Select product, which you are want delete</h3>
         <div className="SelectionProduct">
             <ul>
-                {product.product.map(prod  => (
+                {product.product.map(prod => (
                     <div className="Fetch_product">
                         <li
-                            className={prod .product_id === product.selectedProduct.product_id ? "ListItem active" : "ListItem"}
+                            className={prod.product_id === product.selectedProduct.product_id ? "ListItem active" : "ListItem"}
                             onClick={()=> product.setSelectedProduct(prod)}
                             key={prod.product_id}
                         >

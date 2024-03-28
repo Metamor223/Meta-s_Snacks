@@ -8,19 +8,22 @@ import EditFormProduct from "./EditFormProduct";
 
 const EditProducts = observer(({setActive}) => {
     const {product} = useContext(Context);
+
     const [editingProduct, setEditingProduct] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
         fetchProducts().then(data => product.setProduct(data.rows));
     }, []);
 
     const editProduct = () => {
+        setSelectedProduct(product)
         setEditingProduct(true);
     };
 
     return (
         <div>
-            {editingProduct ? <EditFormProduct /> : (
+            {editingProduct ? <EditFormProduct selectedProduct={selectedProduct}/> : (
                 <div className="SelectionProduct">
                     <ul>
                         {product.product.map(prod => (

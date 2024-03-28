@@ -9,7 +9,7 @@ const productRouter = require('./productRouter')
 
 
 router.use('/user', userRouter)
-router.use('/orders', orderRouter)
+router.use('/order', orderRouter)
 router.use('/product', productRouter)
 router.use('/recepts', recipesRouter)
 router.use('/type', typeRouter)

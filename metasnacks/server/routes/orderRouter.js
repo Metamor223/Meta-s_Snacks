@@ -1,8 +1,10 @@
 const Router = require('express')
 const router = new Router()
 const OrderController = require('../controllers/orderController')
+const authMiddleware = require("../middleware/authMiddleware");
 
-router.post('/',OrderController.create)
+router.patch('/', OrderController.createOrder)
+router.post('/', OrderController.createCart)
 router.get('/',OrderController.getAll)
 router.delete('/',OrderController.deleteOne)
 

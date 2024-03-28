@@ -12,7 +12,6 @@ import Pages from "../../components/Pages";
 const Catalog = observer(()=> {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [displayedItems, setDisplayedItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,11 +19,6 @@ const Catalog = observer(()=> {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const {product} = useContext(Context)
-
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
 
   const filterProducts = () => {
     let filteredProducts = product;
@@ -78,7 +72,6 @@ const Catalog = observer(()=> {
       {showProductInfo && (
         <div className="overlay" onClick={handleCloseProductInfo}></div>
       )}
-
       <div className="categories">
         <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
         <label>Choose category:</label>
@@ -86,16 +79,10 @@ const Catalog = observer(()=> {
          <TypeBar/>
         </ul>
       </div>
-
       <ul>
-        <ProductList/>
+        <ProductList />
       </ul>
       <Pages/>
-      {showProductInfo && (
-        <ProductPageInfo product={selectedProduct} onClose={handleCloseProductInfo} />
-      )}
-
-
     </div>
   );
 })
