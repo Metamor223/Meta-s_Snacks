@@ -15,12 +15,12 @@ const Orders = sequelize.define('order',{
     detailsOrder: {type: DataTypes.STRING},
     detailsCart: {type: DataTypes.STRING, allowNull:false},
     price:{type: DataTypes.DOUBLE},
-    order_date:{type: DataTypes.DATE},
+    orderDate:{type: DataTypes.DATE},
     issued:{type: DataTypes.BOOLEAN}
 })
 
 const Product = sequelize.define('product',{
-    product_id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     Product_name:{type: DataTypes.STRING, allowNull:false},
     image_path:{type: DataTypes.STRING, allowNull:false},
     description:{type: DataTypes.STRING, allowNull:false},
@@ -29,16 +29,17 @@ const Product = sequelize.define('product',{
 
 const Recipes = sequelize.define('recipes',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    count:{type: DataTypes.INTEGER, allowNull:false}
+    name:{type: DataTypes.STRING, allowNull:false},
+    IngredientList:{type: DataTypes.STRING, allowNull:false}
 })
 
 const Warehouse = sequelize.define('warehouse',{
-    id_ingredient:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:{type: DataTypes.STRING, allowNull:false},
     count:{type: DataTypes.INTEGER, allowNull:false}
 })
 
-const TypeOfProduct = sequelize.define('typeofproduct',{
+const TypeOfProduct = sequelize.define('type',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name_type:{type: DataTypes.STRING, allowNull:false, unique: true}
 })

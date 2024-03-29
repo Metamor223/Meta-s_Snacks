@@ -11,7 +11,7 @@ const productRouter = require('./productRouter')
 router.use('/user', userRouter)
 router.use('/order', orderRouter)
 router.use('/product', productRouter)
-router.use('/recepts', recipesRouter)
+router.use('/recipes', recipesRouter)
 router.use('/type', typeRouter)
 router.use('/warehouse', warehouseRouter)
 
