@@ -36,8 +36,13 @@ nav ul li{
     text-decoration: none;
 }
 
-
 nav a{
     font-size: 20px;
     text-decoration: none;
+    min-width: max-content;
+}
+
+.loggedIn{
+    display: flex;
+    margin-left: 30%;
 }

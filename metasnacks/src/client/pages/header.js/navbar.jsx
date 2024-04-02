@@ -9,7 +9,8 @@ import {
     CATALOG_ROUTE,
     CONTACT_ROUTE,
     LOGIN_ROUTE,
-    ORDERS_ROUTE
+    ORDERS_ROUTE,
+    WAREHOUSE_ROUTE
 } from "../../utils/consts";
 import {observer} from "mobx-react-lite";
 
@@ -26,10 +27,13 @@ return (
                         <>
                 <CustomLink to={CONTACT_ROUTE}>Contacts</CustomLink>
                 <CustomLink to={ACCOUNT_ROUTE}>Account</CustomLink>
-                <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Log Out</Link>
+                    <div className="loggedIn">
                 <CustomLink to={ORDERS_ROUTE}>Orders</CustomLink>
                 <CustomLink to={CART_ROUTE}>Cart</CustomLink>
                 <CustomLink to={ADMIN_ROUTE}>Admin</CustomLink>
+                <CustomLink to={WAREHOUSE_ROUTE}>Warehouse</CustomLink>
+                <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Log Out</Link>
+                    </div>
                         </>
                         :
                 <>

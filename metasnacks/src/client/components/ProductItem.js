@@ -27,7 +27,7 @@ const ProductItem = ({product}) => {
                      selectedProduct={selectedProduct}
                  />}
                 <div className={"product"}
-                     key={product.product_id}
+                     key={product.id}
                      onClick={handleItemClick}>
                     <div className="headerProduct">
                         <img src={process.env.REACT_APP_META_SNACKS + "/" + product.image_path} alt={product.Product_name} style={{ width: '13vw' }}/>

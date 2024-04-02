@@ -7,7 +7,6 @@ const ProductList = observer(({showAddToCartButton}) => {
 
     const {product} = useContext(Context)
 
- // Проверяем, является ли product.typeProduct массивом перед вызовом метода map
     return (
         <>
             {product.product.map(product=>

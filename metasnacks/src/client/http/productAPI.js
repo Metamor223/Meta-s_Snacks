@@ -25,9 +25,9 @@ export const changeProduct = async (product)=>{
     return data
 }
 
-export const fetchProducts = async (typeofproductId, limit = 5, page) => {
+export const fetchProducts = async (typeId, limit = 5, page) => {
     const {data} = await $host.get('api/product',{params: {
-            typeofproductId, limit, page}})
+            typeId, limit, page}})
     return data
 }
 
@@ -41,22 +41,4 @@ export const deleteProduct = async (id) =>{
     return data
 }
 
-export const createRecipe = async (recipe) => {
-    const {data} = await $authHost.post('api/recepts' + recipe)
-    return data
-}
 
-export const fetchRecipe = async () =>{
-    const {data} = await $authHost.get('api/recepts')
-    return data
-}
-
-export const createIngredient = async (Ingredient) =>{
-    const {data} = await $authHost.post('api/warehouse' + Ingredient)
-    return data
-}
-
-export const fetchIngredient = async () =>{
-    const {data} = await $authHost.get('api/warehouse')
-    return data
-}
