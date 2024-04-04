@@ -13,7 +13,6 @@ const IngredientItem = ({Ingredient}) => {
             </div>
             <div className="footerProduct">
                 <p>{Ingredient.count}р</p>
-                <li>Add to Cart</li>
             </div>
         </div>
     );
