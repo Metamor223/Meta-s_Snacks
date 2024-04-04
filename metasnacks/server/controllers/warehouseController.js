@@ -4,9 +4,6 @@ const path = require("path");
 class WarehouseController{
     async create(req,res){
         const {name, count} = req.body
-        const {image_path} = req.files
-        let fileName = uuid.v4() + ".jpg"
-        image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
         const ingredient = await Warehouse.create({name, count, image_path: fileName})
         return res.json(ingredient)
     }

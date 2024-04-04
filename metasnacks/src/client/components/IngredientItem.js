@@ -9,8 +9,7 @@ const IngredientItem = ({Ingredient}) => {
         <div className={"product"}
              key={Ingredient.id}>
             <div className="headerProduct">
-                <img src={process.env.REACT_APP_META_SNACKS + "/" + Ingredient.image_path} alt={Ingredient.name} style={{ width: '13vw' }}/>
-                <p>{Ingredient.Product_name}</p>
+                <p>{Ingredient.name}</p>
             </div>
             <div className="footerProduct">
                 <p>{Ingredient.count}р</p>

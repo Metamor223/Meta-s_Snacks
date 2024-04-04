@@ -20,12 +20,12 @@ const Catalog = observer(()=> {
 
   const {product} = useContext(Context)
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   const filterProducts = () => {
     let filteredProducts = product;
-
-    if (selectedCategory) {
-      filteredProducts = filteredProducts.filter((product) => product.category === selectedCategory);
-    }
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -73,7 +73,7 @@ const Catalog = observer(()=> {
         <div className="overlay" onClick={handleCloseProductInfo}></div>
       )}
       <div className="categories">
-        <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+        <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={handleSearchChange}/>
         <label>Choose category:</label>
         <ul>
          <TypeBar/>

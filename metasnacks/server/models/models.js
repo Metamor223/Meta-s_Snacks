@@ -36,8 +36,7 @@ const Recipes = sequelize.define('recipes',{
 const Warehouse = sequelize.define('warehouse',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name:{type: DataTypes.STRING, allowNull:false},
-    count:{type: DataTypes.INTEGER},
-    image_path:{type: DataTypes.STRING, allowNull:false}
+    count:{type: DataTypes.INTEGER}
 })
 
 const TypeOfProduct = sequelize.define('type',{

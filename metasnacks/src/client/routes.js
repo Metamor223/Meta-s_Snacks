@@ -15,9 +15,7 @@ import AdminPage from "./pages/AdminPage/Admin";
 import LogIn from "./pages/LoginWindow/logIn";
 import Registration from "./pages/RegistrationWindow/Registration";
 import Orders from "./pages/OrdersForFactory/Orders";
-import Account from "./pages/AccountPage/Account";
 import Catalog from "./pages/CatalogPage/Catalog";
-import Contacts from "./pages/ContactsPage/Contacts";
 import Warehouse from "./pages/WarehousePage/warehouse";
 
 export const authRoutes =  [
@@ -28,10 +26,6 @@ export const authRoutes =  [
     {
         path: CART_ROUTE,
         Component: Cart
-    },
-    {
-        path: ACCOUNT_ROUTE,
-        Component: Account
     },
     {
         path: ORDERS_ROUTE,
@@ -55,9 +49,5 @@ export const publicRoutes =  [
     {
         path: REGISTRATION_ROUTE,
         Component: Registration
-    },
-    {
-        path: CONTACT_ROUTE,
-        Component: Contacts
     }
 ]

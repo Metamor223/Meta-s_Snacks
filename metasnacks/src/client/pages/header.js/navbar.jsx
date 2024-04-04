@@ -3,11 +3,9 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import {Context} from "../../../index";
 import {useContext} from "react";
 import {
-    ACCOUNT_ROUTE,
     ADMIN_ROUTE,
     CART_ROUTE,
     CATALOG_ROUTE,
-    CONTACT_ROUTE,
     LOGIN_ROUTE,
     ORDERS_ROUTE,
     WAREHOUSE_ROUTE
@@ -25,8 +23,6 @@ return (
                 <CustomLink to={CATALOG_ROUTE}>Catalog</CustomLink>
                     {user.isAuth ?
                         <>
-                <CustomLink to={CONTACT_ROUTE}>Contacts</CustomLink>
-                <CustomLink to={ACCOUNT_ROUTE}>Account</CustomLink>
                     <div className="loggedIn">
                 <CustomLink to={ORDERS_ROUTE}>Orders</CustomLink>
                 <CustomLink to={CART_ROUTE}>Cart</CustomLink>
@@ -37,8 +33,7 @@ return (
                         </>
                         :
                 <>
-                    <CustomLink to={CONTACT_ROUTE}>Contacts</CustomLink>
-                    <Link to={LOGIN_ROUTE}>Log In</Link>
+                <Link to={LOGIN_ROUTE}>Log In</Link>
                 </>
                 }
               </li>

@@ -1,0 +1,30 @@
+.WarehouseCatalog{
+    max-width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.WarehouseCatalog ul{
+    width: 80%;
+    border: #00dfc4 1px solid;
+}
+
+p{
+    display:flex;
+    align-items: center;
+}
+
+.from li{
+    margin: 30px;
+    font-size: 18px;
+    height: max-content;
+    width: max-content;
+}
+
+input{
+    margin-left: 30px;
+}
+
+form{
+    margin-left: 3%;
+}
