@@ -1,18 +1,14 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import '../pages/WarehousePage/warehouse.css'
 
-const IngredientItem = ({Ingredient}) => {
-
-    const {id} = useParams()
-
+const IngredientItem = ({ ingredient }) => {
     return (
-        <div className={"product"}
-             key={Ingredient.id}>
-            <div className="headerProduct">
-                <p>{Ingredient.name}</p>
+        <div className="ingredient" key={ingredient.id}>
+            <div className="headerIngredient">
+                <p>{ingredient.name}</p>
             </div>
-            <div className="footerProduct">
-                <p>{Ingredient.count}р</p>
+            <div className="footerIngredient">
+                <p>{ingredient.count}</p>
             </div>
         </div>
     );

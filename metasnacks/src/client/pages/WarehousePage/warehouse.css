@@ -29,3 +29,17 @@ p{
 form{
     margin-left: 3%;
 }
+
+.ingredient{
+    border: #00dfc4 1px solid;
+    width: 30px;
+    display: block;
+}
+
+.headerIngredient{
+    min-width: max-content;
+}
+
+.footerIngredient{
+    min-width: max-content;
+}

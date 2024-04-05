@@ -6,7 +6,6 @@ const ProductItem = ({product}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const {id} = useParams()
 
     const handleItemClick = () => {
         setSelectedProduct(product)
@@ -15,7 +14,6 @@ const ProductItem = ({product}) => {
     };
 
     const closeModal = () => {
-        // Закрываем модальное окно
         setModalOpen(false);
     };
 

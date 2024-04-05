@@ -10,7 +10,10 @@ const AddIngredient = () => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('count', `${count}`)
-        createIngredient(formData).then(data=>{setName('') && setCount(0)})
+        createIngredient(formData).then(data=>{
+            setName('');
+            setCount(0);
+        })
     }
 
     return (

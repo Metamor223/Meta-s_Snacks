@@ -1,7 +1,7 @@
 import {$authHost} from "./index";
 
 export const createRecipe = async (recipe) => {
-    const {data} = await $authHost.post('api/recepts' + recipe)
+    const {data} = await $authHost.post('api/recepts', recipe)
     return data
 }
 
@@ -11,7 +11,7 @@ export const fetchRecipe = async () =>{
 }
 
 export const createIngredient = async (Ingredient) =>{
-    const {data} = await $authHost.post('api/warehouse' + Ingredient)
+    const {data} = await $authHost.post('api/warehouse', Ingredient)
     return data
 }
 

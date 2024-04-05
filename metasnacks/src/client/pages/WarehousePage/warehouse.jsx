@@ -8,10 +8,10 @@ import AddIngredient from "../../components/AddDeleteEdit/AddIngredient";
 
 const Warehouse = observer(() => {
 
-    const {Ingredient} = useContext(Context)
+    const {ingredient} = useContext(Context)
 
     useEffect(() => {
-        fetchIngredient().then(data=>Ingredient.setIngredient(data))
+        fetchIngredient().then(data=>ingredient.setIngredient(data.rows))
     }, []);
 
     return (

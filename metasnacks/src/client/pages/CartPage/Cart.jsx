@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {fetchOneProduct, fetchProducts} from "../../http/productAPI";
+import {observer} from "mobx-react-lite";
 
-export default function Cart({ selectedProduct }) {
+const Cart = observer(({ selectedProduct }) => {
   // Состояние корзины в компоненте Cart
   const [cart, setCart] = useState(selectedProduct || []);
 
     const [product, setProduct] = useState(selectedProduct);
-    const {product_id} = useParams()
 
     useEffect(() => {
-            fetchProducts().then(data => setProduct(data))
-    }, []);
+        if (selectedProduct) {
+            setCart([...cart, selectedProduct]);
+        }
+    }, [selectedProduct]);
 
-    //нужна функция для доставания из orders
 
-  return (
+
+    return (
     <div className="cart">
       <h2>Shopping Cart</h2>
       <ul>
@@ -30,4 +32,6 @@ export default function Cart({ selectedProduct }) {
       </ul>
     </div>
   );
-}
+})
+
+export default Cart;

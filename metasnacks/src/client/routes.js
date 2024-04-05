@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-    ACCOUNT_ROUTE,
     ADMIN_ROUTE,
     CART_ROUTE,
     CATALOG_ROUTE,
-    CONTACT_ROUTE,
     LOGIN_ROUTE,
     ORDERS_ROUTE,
     REGISTRATION_ROUTE, WAREHOUSE_ROUTE
