@@ -1,8 +1,8 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './warehouse.css';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
-import {fetchIngredient} from "../../http/warehouseAPI";
+import {changeIngredient, fetchIngredient} from "../../http/warehouseAPI";
 import IngredientList from "../../components/IngredientList";
 import AddIngredient from "../../components/AddDeleteEdit/AddIngredient";
 
@@ -10,15 +10,40 @@ const Warehouse = observer(() => {
 
     const {ingredient} = useContext(Context)
 
+    const [change, setChange] = useState([])
+
     useEffect(() => {
-        fetchIngredient().then(data=>ingredient.setIngredient(data.rows))
+        fetchIngredient().then(data=>{
+            ingredient.setIngredient(data);
+            setChange(data);
+        })
     }, []);
+
+    const handleIngredientChange = (newIngredientData) => {
+        const updatedIngredients = change.map(ingredient => {
+            if (ingredient.id === newIngredientData.id) {
+                return newIngredientData;
+            } else {
+                return ingredient;
+            }
+        });
+        setChange(updatedIngredients);
+    };
+
+    const save = () => {
+
+        changeIngredient(change).then(data => {
+            ingredient.setIngredient(data);
+            setChange(data);
+        });
+    }
 
     return (
         <div className="WarehouseCatalog">
             <ul>
-                <IngredientList/>
+                <IngredientList onIngredientChange={handleIngredientChange}/>
             </ul>
+            <button onClick={save}>Save changes</button>
                 <AddIngredient/>
         </div>
     );

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../../index";
-import {createProduct, fetchTypes} from "../../http/productAPI";
+import {createProduct, fetchRecipe, fetchTypes} from "../../http/productAPI";
 import {observer} from "mobx-react-lite";
 
 const AddProducts = observer(({setActive}) => {
@@ -18,6 +18,7 @@ const AddProducts = observer(({setActive}) => {
 
     useEffect(() => {
         fetchTypes().then(data => product.setTypeProduct(data))
+        fetchRecipe().then(data=>product.setRecipe(data))
     }, []);
 
     const selectFile = e => {
@@ -28,9 +29,10 @@ const AddProducts = observer(({setActive}) => {
         const formData = new FormData()
         formData.append('Product_name', name)
         formData.append('image_path', file)
-        formData.append('typeId', product.selectedType.id)
+        formData.append('typeofproductId', product.selectedType.id)
         formData.append('description', description)
         formData.append('price', `${price}`)
+        formData.append('recipeId', product.selectedRecipe.id)
         // Создаем объект для хранения данных из formData
         const formDataObject = {};
         for (const [key, value] of formData.entries()) {
@@ -50,25 +52,13 @@ const AddProducts = observer(({setActive}) => {
                 />
                 <input type="file" id="fileInput" onChange={selectFile}/>
                 <p>Select product category:
-                    <select onChange={e => product.setSelectedType(e.target.value)}>
+                    <select>
                         {product.typeProduct.map(type=>
                             <option
-                                onClick={()=> product.setSelectedType(type)}
+                                onClick={()=> product.setTypeProduct(type.id)}
                                 key={type.id}
                             >
                                 {type.name_type}
-                            </option>
-                        )}
-                    </select>
-                </p>
-                <p>Select product recipe:
-                    <select onChange={e => recipe.setSelectedRecipe(e.target.value)}>
-                        {recipe.recipe.map(recipe=>
-                            <option
-                                onClick={()=> recipe.setSelectedRecipe(recipe)}
-                                key={recipe.id}
-                            >
-                                {recipe.name}
                             </option>
                         )}
                     </select>

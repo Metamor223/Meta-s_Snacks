@@ -10,13 +10,7 @@ import ProductList from "../../components/ProductList";
 import Pages from "../../components/Pages";
 
 const Catalog = observer(()=> {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showProductInfo, setShowProductInfo] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const {product} = useContext(Context)
 
@@ -38,8 +32,6 @@ const Catalog = observer(()=> {
   };
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
     fetchTypes().then(data=>product.setTypeProduct(data));
     fetchProducts(null,8, product.page).then(data=> {
       product.setProduct(data.rows)
@@ -54,24 +46,8 @@ const Catalog = observer(()=> {
     });
   }, [product.page,product.selectedType]);
 
-  const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
-  };
-
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-    setShowProductInfo(true);
-  };
-
-  const handleCloseProductInfo = () => {
-    setShowProductInfo(false);
-  };
-
   return (
     <div className="catalogAppearance">
-      {showProductInfo && (
-        <div className="overlay" onClick={handleCloseProductInfo}></div>
-      )}
       <div className="categories">
         <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={handleSearchChange}/>
         <label>Choose category:</label>

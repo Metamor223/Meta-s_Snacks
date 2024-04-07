@@ -6,11 +6,11 @@ const ApiError = require('../error/ApiError');
 class ProductController{
     async create(req, res, next) {
         try {
-            const {id, Product_name, typeId,description,price, recipesId} = req.body
+            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const product = await Product.create({id, Product_name, image_path: fileName, typeId, description, price})
+            const product = await Product.create({product_id, Product_name, image_path: fileName, typeId, description, price, recipeId})
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -19,7 +19,7 @@ class ProductController{
 
     async change(req,res,next){
         try {
-            const {id, Product_name, typeId,description,price} = req.body
+            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -29,10 +29,11 @@ class ProductController{
                     image_path: fileName,
                     typeId,
                     description,
-                    price
+                    price,
+                    recipeId
                 },
                 {
-                    where: {id: id},
+                    where: {id: product_id},
                     returning: true
                 }
 
@@ -60,20 +61,20 @@ class ProductController{
         return res.json(product)
     }
     async getOne(req,res){
-        const {id} = req.params
+        const {product_id} = req.params
         const product = await Product.findOne(
             {
-                where:{id},
+                where:{product_id},
             }
         );
         return res.json(product)
     }
 
     async deleteOne(req,res){
-        const id = parseInt(req.params.id,10)
+        const id = parseInt(req.params.product_id,10)
         try {
             const product = await Product.destroy({
-                where: { id: id }
+                where: { product_id: id }
             });
             if (product) {
                 // Запись была успешно удалена

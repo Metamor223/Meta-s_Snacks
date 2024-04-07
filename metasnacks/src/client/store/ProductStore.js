@@ -12,7 +12,6 @@ export default class ProductStore{
         this._limit = 3
         makeAutoObservable(this)
     }
-
     setProduct(product){
         this._product = product
     }
@@ -22,6 +21,7 @@ export default class ProductStore{
     setDescription(description){
         this._description = description
     }
+
     setSelectedType(typeProduct){
         this.setPage(1)
         this._selectedType = typeProduct

@@ -27,18 +27,6 @@ class OrderController{
         }
     }
 
-    async createCart(req,res){
-        try {
-            const {userId, detailsCart} = req.body
-            const cart = await Orders.create({detailsCart, userId})
-            return res.json(cart)
-        }
-        catch (e)
-        {
-            return res.json(e)
-        }
-    }
-
     async getAll(req,res){
         try {
             const {issued} = req.params

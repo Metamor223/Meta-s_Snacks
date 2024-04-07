@@ -4,7 +4,6 @@ const OrderController = require('../controllers/orderController')
 const authMiddleware = require("../middleware/authMiddleware");
 
 router.patch('/', OrderController.createOrder)
-router.post('/', OrderController.createCart)
 router.get('/',OrderController.getAll)
 router.delete('/',OrderController.deleteOne)
 

@@ -7,15 +7,12 @@ const Cart = observer(({ selectedProduct }) => {
   // Состояние корзины в компоненте Cart
   const [cart, setCart] = useState(selectedProduct || []);
 
-    const [product, setProduct] = useState(selectedProduct);
-
     useEffect(() => {
         if (selectedProduct) {
             setCart([...cart, selectedProduct]);
+            console.log('Cart Updated:', cart);
         }
-    }, [selectedProduct]);
-
-
+    }, [selectedProduct,cart]);
 
     return (
     <div className="cart">

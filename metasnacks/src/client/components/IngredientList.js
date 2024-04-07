@@ -1,19 +1,19 @@
 import React, {useContext} from 'react';
-import ProductItem from "./ProductItem";
 import {Context} from "../../index";
 import IngredientItem from "./IngredientItem";
+import {observer} from "mobx-react-lite";
 
-const IngredientList = () => {
+const IngredientList = observer(() => {
 
     const{ingredient} = useContext(Context)
 
     return (
-        <div>
+        <div className="List">
             {ingredient.ingredient.map(ingredient=>
                 <IngredientItem key={ingredient.id} ingredient={ingredient}/>
             )}
         </div>
     );
-};
+});
 
 export default IngredientList;

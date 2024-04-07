@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import ProductPageInfo from "../pages/CatalogPage/ProductPageInfo";
 import {useParams} from "react-router-dom";
+import Cart from "../pages/CartPage/Cart";
 
-const ProductItem = ({product}) => {
+const ProductItem = ({product, addToCart}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -33,7 +34,6 @@ const ProductItem = ({product}) => {
                     </div>
                     <div className="footerProduct">
                         <p>{product.price}р</p>
-                        {/*добавить метод POST для добавления в orders без галки*/}
                         <li>Add to Cart</li>
                     </div>
                 </div>

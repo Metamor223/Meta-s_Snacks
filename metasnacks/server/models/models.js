@@ -10,6 +10,15 @@ const User = sequelize.define('user',{
     role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
+const Basket = sequelize.define('basket',{
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    count:{type: DataTypes.INTEGER}
+})
+
+const BasketProduct= sequelize.define('basket_product',{
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+})
+
 const Orders = sequelize.define('order',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     detailsOrder: {type: DataTypes.STRING},
@@ -19,8 +28,12 @@ const Orders = sequelize.define('order',{
     issued:{type: DataTypes.BOOLEAN}
 })
 
+const OrderProduct = sequelize.define('order_product',{
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+})
+
 const Product = sequelize.define('product',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    product_id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     Product_name:{type: DataTypes.STRING, allowNull:false},
     image_path:{type: DataTypes.STRING, allowNull:false},
     description:{type: DataTypes.STRING, allowNull:false},
@@ -44,17 +57,23 @@ const TypeOfProduct = sequelize.define('type',{
     name_type:{type: DataTypes.STRING, allowNull:false, unique: true}
 })
 
+User.hasOne(Basket)
+Basket.belongsTo(User)
+
 User.hasMany(Orders)
 Orders.belongsTo(User)
 
-Orders.hasMany(Product)
-Product.belongsTo(Orders)
+Basket.hasMany(BasketProduct)
+BasketProduct.belongsTo(Basket)
 
 TypeOfProduct.hasMany(Product)
 Product.belongsTo(TypeOfProduct)
 
-Product.belongsToMany(Warehouse, {through: Recipes})
-Warehouse.belongsToMany(Product, {through: Recipes})
+Recipes.hasOne(Product)
+Product.belongsTo(Recipes)
+
+Recipes.hasMany(Warehouse)
+Warehouse.belongsTo(Recipes)
 
 module.exports = {
     User,
@@ -62,5 +81,6 @@ module.exports = {
     Product,
     Recipes,
     Warehouse,
-    TypeOfProduct
+    TypeOfProduct,
+    OrderProduct
 }
