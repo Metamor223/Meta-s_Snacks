@@ -6,11 +6,11 @@ const ApiError = require('../error/ApiError');
 class ProductController{
     async create(req, res, next) {
         try {
-            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
+            const {product_id, Product_name, typeId,description,price} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const product = await Product.create({product_id, Product_name, image_path: fileName, typeId, description, price, recipeId})
+            const product = await Product.create({product_id, Product_name, image_path: fileName, typeId, description, price})
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -19,7 +19,7 @@ class ProductController{
 
     async change(req,res,next){
         try {
-            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
+            const {product_id, Product_name, typeId,description,price} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -29,8 +29,7 @@ class ProductController{
                     image_path: fileName,
                     typeId,
                     description,
-                    price,
-                    recipeId
+                    price
                 },
                 {
                     where: {id: product_id},

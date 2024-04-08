@@ -1,0 +1,2 @@
+Product ID | Product Name | Type | Description | Price
+1 | chips | null | AAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFFFFFFFFF | 2000
