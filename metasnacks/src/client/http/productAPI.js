@@ -51,3 +51,8 @@ export const fetchRecipe = async () =>{
     return data
 }
 
+export const createFile = async () =>{
+    const {data} = await $authHost.get('api/file')
+    return data
+}
+

@@ -1,4 +1,4 @@
-const {TypeOfProduct, Product} = require('../models/models')
+const {TypeOfProduct} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
 class TypeController{

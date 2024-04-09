@@ -52,7 +52,7 @@ const Warehouse = sequelize.define('warehouse',{
     count:{type: DataTypes.INTEGER}
 })
 
-const TypeOfProduct = sequelize.define('type',{
+const TypeOfProduct = sequelize.define('typeofproduct',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name_type:{type: DataTypes.STRING, allowNull:false, unique: true}
 })
@@ -69,8 +69,8 @@ BasketProduct.belongsTo(Basket)
 TypeOfProduct.hasMany(Product)
 Product.belongsTo(TypeOfProduct)
 
-Recipes.hasOne(Product)
-Product.belongsTo(Recipes)
+// Recipes.hasOne(Product)
+// Product.belongsTo(Recipes)
 
 Recipes.hasMany(Warehouse)
 Warehouse.belongsTo(Recipes)
