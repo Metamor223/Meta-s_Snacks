@@ -3,7 +3,7 @@ import {Context} from "../../index";
 import IngredientItem from "./IngredientItem";
 import {observer} from "mobx-react-lite";
 
-const IngredientList = observer(() => {
+const IngredientList = () => {
 
     const{ingredient} = useContext(Context)
 
@@ -14,6 +14,6 @@ const IngredientList = observer(() => {
             )}
         </div>
     );
-});
+};
 
 export default IngredientList;

@@ -19,16 +19,6 @@ const Warehouse = observer(() => {
         })
     }, []);
 
-    const handleIngredientChange = (newIngredientData) => {
-        const updatedIngredients = change.map(ingredient => {
-            if (ingredient.id === newIngredientData.id) {
-                return newIngredientData;
-            } else {
-                return ingredient;
-            }
-        });
-        setChange(updatedIngredients);
-    };
 
     const save = () => {
 
@@ -41,7 +31,7 @@ const Warehouse = observer(() => {
     return (
         <div className="WarehouseCatalog">
             <ul>
-                <IngredientList onIngredientChange={handleIngredientChange}/>
+                <IngredientList/>
             </ul>
             <button onClick={save}>Save changes</button>
                 <AddIngredient/>

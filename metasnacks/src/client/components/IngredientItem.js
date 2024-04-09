@@ -3,7 +3,7 @@ import {deleteType} from "../http/productAPI";
 import {deleteIngredient, fetchIngredient} from "../http/warehouseAPI";
 import {observer} from "mobx-react-lite";
 
-const IngredientItem = ({ ingredient, onIngredientChange }) => {
+const IngredientItem = ({ ingredient }) => {
 
     const Delete = () =>{
         const Id = ingredient.id
@@ -19,10 +19,6 @@ const IngredientItem = ({ ingredient, onIngredientChange }) => {
             .catch(error=>{console.error('Error deleting category:', error)})
     }
 
-    const handleInputChange = (e) => {
-        const newIngredientData = { ...ingredient, count: e.target.value };
-        onIngredientChange(newIngredientData);
-    };
 
     return (
         <div className="ingredient" key={ingredient.id}>
@@ -30,7 +26,7 @@ const IngredientItem = ({ ingredient, onIngredientChange }) => {
                 <p>{ingredient.name}</p>
             </div>
             <div className="footerIngredient">
-                <input value={ingredient.count} onChange={handleInputChange}/>
+                <input value={ingredient.count}/>
                 <li onClick={Delete}>delete</li>
             </div>
         </div>

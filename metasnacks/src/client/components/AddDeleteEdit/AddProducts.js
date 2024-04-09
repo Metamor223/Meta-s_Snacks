@@ -5,7 +5,6 @@ import {observer} from "mobx-react-lite";
 
 const AddProducts = observer(({setActive}) => {
     const {product} = useContext(Context)
-    const {recipe} = useContext(Context)
 
     const [name,setName] = useState('')
     const [file,setFile] = useState(null)
@@ -18,7 +17,7 @@ const AddProducts = observer(({setActive}) => {
 
     useEffect(() => {
         fetchTypes().then(data => product.setTypeProduct(data))
-        fetchRecipe().then(data=>product.setRecipe(data))
+        // fetchRecipe().then(data=>product.setRecipe(data))
     }, []);
 
     const selectFile = e => {
@@ -32,7 +31,7 @@ const AddProducts = observer(({setActive}) => {
         formData.append('typeofproductId', product.selectedType.id)
         formData.append('description', description)
         formData.append('price', `${price}`)
-        formData.append('recipeId', product.selectedRecipe.id)
+        // formData.append('recipeId', product.selectedRecipe.id)
         // Создаем объект для хранения данных из formData
         const formDataObject = {};
         for (const [key, value] of formData.entries()) {
