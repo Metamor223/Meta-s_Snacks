@@ -1,4 +1,4 @@
-const {Product, TypeOfProduct} = require('../models/models')
+const {Product} = require('../models/models')
 const uuid = require('uuid')
 const path = require('path');
 const ApiError = require('../error/ApiError');
@@ -6,11 +6,11 @@ const ApiError = require('../error/ApiError');
 class ProductController{
     async create(req, res, next) {
         try {
-            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
+            const {Product_name, description,price, typeofproductId} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const product = await Product.create({product_id, Product_name, image_path: fileName, typeId, description, price, recipeId})
+            const product = await Product.create({Product_name, image_path: fileName, description, price,typeofproductId})
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -19,7 +19,7 @@ class ProductController{
 
     async change(req,res,next){
         try {
-            const {product_id, Product_name, typeId,description,price,recipeId} = req.body
+            const {product_id, Product_name, typeofproductId,description,price} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -27,10 +27,9 @@ class ProductController{
                 {
                     Product_name,
                     image_path: fileName,
-                    typeId,
+                    typeofproductId,
                     description,
-                    price,
-                    recipeId
+                    price
                 },
                 {
                     where: {id: product_id},
@@ -47,16 +46,16 @@ class ProductController{
     }
 
     async getAll(req,res){
-        let { typeId, limit, page } = req.query
+        let { typeofproductId, limit, page } = req.query
         page = page || 1
         limit = limit || 9
         let offset = page * limit - limit
         let product;
-        if (!typeId) {
+        if (!typeofproductId) {
             product = await Product.findAndCountAll({limit,offset})
         }
-        if (typeId) {
-            product = await Product.findAndCountAll({ where: { typeId }, limit, offset })
+        if (typeofproductId) {
+            product = await Product.findAndCountAll({ where: { typeofproductId }, limit, offset })
         }
         return res.json(product)
     }
