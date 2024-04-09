@@ -28,8 +28,6 @@ const AdminPage = observer(() => {
         }
     }
 
-
-
     return (
         <div className="actionList">
             <li onClick={() => setModalProductsActive(true)}>Edit products</li>

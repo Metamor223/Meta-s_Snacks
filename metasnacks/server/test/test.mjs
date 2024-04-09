@@ -12,7 +12,7 @@ describe('POST /api/postCategory', function() {
             .expect(200)
             .end(function(err, res) {
                 if (err) return done(err);
-                expect(res.body.length).to.equal(3)
+                expect(res.body).to.have.property('name_type').to.equal('dried squid');
                 done();
             });
     });
