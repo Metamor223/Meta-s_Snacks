@@ -24,7 +24,7 @@ const Orders = sequelize.define('order',{
     issued:{type: DataTypes.BOOLEAN}
 })
 
-const BasketOrder = sequelize.define('order_product',{
+const BasketOrder = sequelize.define('basketOrder',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
@@ -34,6 +34,10 @@ const Product = sequelize.define('product',{
     image_path:{type: DataTypes.STRING, allowNull:false},
     description:{type: DataTypes.STRING, allowNull:false},
     price:{type: DataTypes.INTEGER, allowNull:false}
+})
+
+const BasketProduct = sequelize.define('basketProduct',{
+    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
 const Stats =sequelize.define('stats',{
@@ -65,17 +69,20 @@ Basket.belongsTo(User)
 User.hasMany(Orders)
 Orders.belongsTo(User)
 
+Basket.belongsToMany(Product, {'through': BasketProduct})
+Product.belongsToMany(Basket, {'through': BasketProduct})
+
 Orders.belongsToMany(Basket, {'through': BasketOrder})
 Basket.belongsToMany(Orders,{'through': BasketOrder})
 
-Stats.hasMany(Product)
-Product.belongsTo(Stats)
+Product.hasMany(Stats)
+Stats.belongsTo(Product)
 
 Product.hasMany(Info)
 Info.belongsTo(Product)
 
-Warehouse.hasMany(Product)
-Product.belongsTo(Warehouse)
+Product.hasMany(Warehouse)
+Warehouse.belongsTo(Product)
 
 Type.hasMany(Product)
 Product.belongsTo(Product)
