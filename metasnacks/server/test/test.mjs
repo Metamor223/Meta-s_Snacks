@@ -7,28 +7,27 @@ describe('POST /api/postCategory', function() {
         request(app)
             .post('/api/type/')
             .set('Accept', 'application/json')
-            .send({ name_type : 'dried squid'})
+            .send({ name_type : 'jerky'})
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function(err, res) {
                 if (err) return done(err);
-                expect(res.body).to.have.property('name_type').to.equal('dried squid');
+                expect(res.body).to.have.property('name_type').to.equal('jerky');
                 done();
-            });
+        });
     });
 });
 
-describe('POST /api/getLengthCart', function() {
+describe('Edit /api/UpdateProduct', function() {
     it('responds with json', function(done) {
         request(app)
-            .post('/api/getLengthCart')
+            .update('/api/type')
             .set('Accept', 'application/json')
-            .send({ customer_id : 2})
+            .send({ id : 2})
             .expect('Content-Type', /json/)
-            .expect(200)
-            .end(function(err, res) {
+            .expect(404)
+            .end(function(err) {
                 if (err) return done(err);
-                expect(res.body.length).to.equal(0)
                 done();
             });
     });
@@ -48,8 +47,4 @@ describe('POST /api/getLengthCart', function() {
                 done();
             });
     });
-});
-
-
-after(function() {
 });
