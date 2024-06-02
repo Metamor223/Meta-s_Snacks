@@ -1,9 +1,9 @@
 .product{
     margin: 10px;
     padding: 20px;
-    border: #00dfc4 solid 3px;
+    border: #FFF solid 3px;
     border-radius: 10px;
-    color: #00dfc4;
+    color: #FFF;
     cursor: pointer;
 }
 
@@ -32,8 +32,8 @@
     width: 105px;
     padding: 10px;
     border: 1px solid rgba(255,255,255,0.25);
-    background: #1d2b3a;
-    color: #00dfc4;
+    background: #332546;
+    color: #FFF;
     border-radius: 5px;
     outline: none;
     font-size: 1em;
@@ -41,8 +41,8 @@
 }
 
 .footerProduct li:hover{
-    background-color: #00dfc4;
-    color:#1d2b3a
+    background-color: #FFF;
+    color:#332546
 }
 
 .catalogAppearance{
@@ -69,13 +69,13 @@ flex-direction: column;
 }
 
 .categories input::placeholder{
-    color: #00dfc4;
+    color: #FFF;
     font-size: 15px;
 }
 
 .categories label{
     font-size: 25px;
-    color:#00dfc4;
+    color:#FFF;
 }
 
 .categories ul{
@@ -92,24 +92,24 @@ padding: 15px 30px 15px 20px;
 width: 100%;
 font-size: 25px;
 list-style-type: none;
-border-right: solid 1px #00dfc4;
-color:#00dfc4;
+border-right: solid 1px #FFF;
+color:#FFF;
 transition: 0.5s;
 }
 
 .categories li:hover{
-    background-color: #00dfc4;
-    color:#1d2b3a
+    background-color: #FFF;
+    color:#332546
 }
 
 .categories li:hover:not(.active) {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .categories li.active {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .catalogAppearance ul{

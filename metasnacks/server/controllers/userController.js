@@ -1,12 +1,12 @@
-const {User,Orders} = require('../models/models')
+const {User,Orders, Basket} = require('../models/models')
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {where} = require("sequelize");
 
-const generateJwt = (id, email, organisation_name, itn, role) => {
+const generateJwt = (id, email, organisation_name, contactName, role) => {
    return jwt.sign(
-        {id, email, organisation_name, itn, role},
+        {id, email, organisation_name, contactName, role},
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
         )
@@ -14,7 +14,7 @@ const generateJwt = (id, email, organisation_name, itn, role) => {
 
 class UserController{
     async registration(req,res,next){
-        const {email,organisation_name,itn,password,role} = req.body
+        const {email,organisation_name, contactName,password,role} = req.body
         if(!email || !password)
         {
             return next(ApiError.badRequest('Incorrect email or password'))
@@ -25,9 +25,10 @@ class UserController{
         return next(ApiError.badRequest('A user with the same email already exists'))
        }
        const hashPassword = await bcrypt.hash(password, 5)
-        const user = await User.create({email, organisation_name, itn, password: hashPassword, role})
-       // const orders = await Orders.create({userId: user.id})
-        const token = generateJwt(user.id, user.email, user.organisation_name, user.itn, user.role)
+        const user = await User.create({email, organisation_name, contactName, password: hashPassword, role})
+        // const orders = await Orders.create({userId: user.id})
+        //const basket = await Basket.create({userId: user.id})
+        const token = generateJwt(user.id, user.email, user.organisation_name, user.contactName, user.role)
         return res.json({token})
     }
 
@@ -49,6 +50,18 @@ class UserController{
     async check(req,res,next){
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
+    }
+
+    async getAllUsers(req,res,next){
+        let {role} = req.body
+        if(!role) {
+            role = 'USER';
+        }
+            const users = await User.findAll({
+                where:
+                    {role: role}
+            })
+            return res.json({users})
     }
 }
 

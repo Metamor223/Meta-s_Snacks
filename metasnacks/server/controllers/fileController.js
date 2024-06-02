@@ -2,34 +2,55 @@ const fs = require('fs');
 const path = require('path');
 const { Product } = require('../models/models');
 const ApiError = require('../error/ApiError');
-
-// Функция для генерации содержимого файла
-const generateFileContent = (products) => {
-    let content = 'Product ID | Product Name | Type | Description | Price\n';
-    products.forEach(product => {
-        content += `${product.product_id} | ${product.Product_name} | ${product.typeofproductId} | ${product.description} | ${product.price}\n`;
-    });
-    return content;
-};
+const { Document, Packer, Table, TableRow, TableCell, Paragraph } = require('docx');
 
 class FileController {
     async downloadFile(req, res) {
         try {
-            console.log('Downloading file...'); // Добавляем лог перед началом загрузки файла
+            console.log('Downloading file...');
 
             const products = await Product.findAll();
             if (!products || products.length === 0) {
                 throw ApiError.forbidden('No products found');
             }
-            const fileContent = generateFileContent(products);
 
-            const filePath = path.resolve(__dirname, '..', 'downloads', 'products.txt');
-            fs.writeFileSync(filePath, fileContent);
+            const tableRows = [
+                new TableRow({
+                    children: [
+                        new TableCell({children: [new Paragraph("Product ID")]}),
+                        new TableCell({children: [new Paragraph("Product Name")]}),
+                        new TableCell({children: [new Paragraph("Type")]}),
+                        new TableCell({children: [new Paragraph("Description")]}),
+                        new TableCell({children: [new Paragraph("Price")]}),
+                    ],
+                }),
+                ...products.map(product => new TableRow({
+                    children: [
+                        new TableCell({children: [new Paragraph(product.product_id.toString())]}),
+                        new TableCell({children: [new Paragraph(product.Product_name)]}),
+                        new TableCell({children: [new Paragraph(product.typeId.toString())]}),
+                        new TableCell({children: [new Paragraph(product.description)]}),
+                        new TableCell({children: [new Paragraph(product.price.toString())]}),
+                    ],
+                }))
+            ];
 
-            console.log('File successfully generated:', filePath); // Добавляем лог после успешной генерации файла
+            const doc = new Document({
+                creator: 'Your Name',
+            });
 
-            // Отправляем файл на frontend
-            res.download(filePath, 'products.txt');
+            const table = new Table({rows: tableRows})
+
+            doc.addSection({
+                children:  [table],
+            });
+
+            Packer.toBuffer(doc).then((buffer) => {
+            const filePath = path.resolve(__dirname, '..', 'downloads', 'products.docx');
+            fs.writeFileSync(filePath, buffer);
+            console.log('File successfully generated:', filePath);
+            res.download(filePath, 'products.docx');
+            });
         } catch (e) {
             console.error('Error generating file:', e);
             res.status(e.status || 500).json({ error: e.message || 'Internal Server Error' });

@@ -12,7 +12,7 @@
     }
     
     h1{
-        color:#00dfc4;
+        color:#FFF;
     }
     
     .form{
@@ -20,7 +20,7 @@
         width: 20%;
         display: flex;
         flex-direction: column;
-        border: 1px solid #00dfc4;
+        border: 1px solid #FFF;
         border-radius: 10px;
         padding: 30px;
     }
@@ -35,7 +35,7 @@
         width: 100%;
         padding: 10px;
         border: 1px solid rgba(255,255,255,0.25);
-        background: #1d2b3a;
+        background: #332546;
         border-radius: 5px;
         outline: none;
         color: #fff;
@@ -57,34 +57,34 @@
     .field__item input:valid ~ span,
     .field__item input:focus ~ span
     {
-    color: #00dfc4;
+    color: #FFF;
     transform: translateX(10px) translateY(-7px);
     font-size: 0.65rem;
     padding: 0 10px;
-    background: #1d2b3a;
-    border-left: 1px solid #00dfc4;
-    border-right: 1px solid #00dfc4;
+    background: #332546;
+    border-left: 1px solid #FFF;
+    border-right: 1px solid #FFF;
     letter-spacing: 0.2em;
     }
     
     .field__item input:valid,
     .field__item input:focus{
-        border: 1px solid #00dfc4;
+        border: 1px solid #FFF;
     }
     
     input{
         height: 40px;
         width: 100px;
-        color: #00dfc4;
-        background: #1d2b3a;
-        border: 2px solid #00dfc4;
+        color: #FFF;
+        background: #332546;
+        border: 2px solid #FFF;
         transition: 0.5s;
         border-radius: 5px;
     }
     
     input:hover{
-        background: #00dfc4;
-        color: #1d2b3a;
+        background: #FFF;
+        color: #332546;
         transition: 0.5s;
     }
     
@@ -95,16 +95,16 @@
         height: 40px;
         width: 100px;
         margin: auto;
-        color: #00dfc4;
-        background: #1d2b3a;
-        border: 2px solid #00dfc4;
+        color: #FFF;
+        background: #332546;
+        border: 2px solid #FFF;
         transition: 0.5s;
         border-radius: 5px;
     }
     
     a:hover{
-        background: #00dfc4;
-        color: #1d2b3a;
+        background: #FFF;
+        color: #332546;
         transition: 0.5s;
     }
 

@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {fetchProducts, changeProduct, fetchOneProduct} from '../../http/productAPI';
-import ProductList from '../ProductList';
+import {fetchProducts} from '../../http/productAPI';
 import { Context } from '../../..';
 import { observer } from 'mobx-react-lite';
-import { useParams} from "react-router-dom";
 import EditFormProduct from "./EditFormProduct";
 
 const EditProducts = observer(({setActive}) => {
@@ -16,8 +14,11 @@ const EditProducts = observer(({setActive}) => {
         fetchProducts().then(data => product.setProduct(data.rows));
     }, []);
 
-    const editProduct = () => {
-        setSelectedProduct(product)
+    const editProduct = (prod) => {
+        console.log("selectedProduct BEFORE:", selectedProduct);
+        product.setSelectedProduct(prod);
+        console.log("selectedProduct AFTER:", selectedProduct);
+        console.log("editingProduct:", editingProduct);
         setEditingProduct(true);
     };
 
@@ -27,10 +28,10 @@ const EditProducts = observer(({setActive}) => {
                 <div className="SelectionProduct">
                     <ul>
                         {product.product.map(prod => (
-                            <div className="Fetch_product">
+                            <div className="Fetch_product" key={prod.product_id}>
                                 <li
-                                    className={prod .product_id === product.selectedProduct.product_id ? "ListItem active" : "ListItem"}
-                                    onClick={()=> product.setSelectedProduct(prod)}
+                                    className={prod.product_id === product.selectedProduct.product_id ? "ListItem active" : "ListItem"}
+                                    onClick={()=> editProduct(prod)}
                                     key={prod.product_id}
                                 >
                                     <div className="headerProduct">

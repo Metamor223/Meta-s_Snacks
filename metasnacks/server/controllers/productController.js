@@ -6,11 +6,11 @@ const ApiError = require('../error/ApiError');
 class ProductController{
     async create(req, res, next) {
         try {
-            const {Product_name, description,price, typeofproductId} = req.body
+            const {Product_name, description,price, typeId} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const product = await Product.create({Product_name, image_path: fileName, description, price,typeofproductId})
+            const product = await Product.create({Product_name, image_path: fileName, description, price,typeId})
             return res.json(product)
         } catch (e) {
             next(ApiError.badRequest(e.message))
@@ -19,7 +19,7 @@ class ProductController{
 
     async change(req,res,next){
         try {
-            const {product_id, Product_name, typeofproductId,description,price} = req.body
+            const {product_id, Product_name, typeId,description,price} = req.body
             const {image_path} = req.files
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
@@ -27,7 +27,7 @@ class ProductController{
                 {
                     Product_name,
                     image_path: fileName,
-                    typeofproductId,
+                    typeId,
                     description,
                     price
                 },
@@ -46,16 +46,16 @@ class ProductController{
     }
 
     async getAll(req,res){
-        let { typeofproductId, limit, page } = req.query
+        let { typeId, limit, page } = req.query
         page = page || 1
         limit = limit || 9
         let offset = page * limit - limit
         let product;
-        if (!typeofproductId) {
+        if (!typeId) {
             product = await Product.findAndCountAll({limit,offset})
         }
-        if (typeofproductId) {
-            product = await Product.findAndCountAll({ where: { typeofproductId }, limit, offset })
+        if (typeId) {
+            product = await Product.findAndCountAll({ where: { typeId }, limit, offset })
         }
         return res.json(product)
     }

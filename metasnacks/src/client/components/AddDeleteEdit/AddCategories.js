@@ -5,7 +5,7 @@ import ModalCategories from "../modals/ModalCategories";
 const AddCategories = ({setActive}) => {
     const [value, setValue] = useState('')
     const addCategory = () =>{
-        createType({name_type:value}).then(data=>{setValue('')})
+        createType({name:value}).then(data=>{setValue('')})
         setActive()
     }
 

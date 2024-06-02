@@ -1,10 +1,15 @@
 const Router = require('express')
 const router = new Router()
-const BasketController = require('../controllers/basketController')
-const authMiddleware = require("../middleware/authMiddleware");
+const basketController = require('../controllers/basketController')
+const authMiddleware = require('../middleware/authMiddleware')
 
-router.post('/', BasketController.addToBasket)
-router.get('/',BasketController.getBasketUser)
-router.delete('/',BasketController.deleteOne)
+// Получить корзину пользователя (требуется авторизация)
+//router.get('/', basketController.getBasket)
+
+// Добавить товар в корзину (требуется авторизация)
+//router.post('/', basketController.addToBasket)
+
+// Удалить товар из корзины (требуется авторизация)
+//router.delete('/', basketController.deleteFromBasket)
 
 module.exports = router

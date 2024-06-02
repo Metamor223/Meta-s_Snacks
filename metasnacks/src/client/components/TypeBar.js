@@ -19,7 +19,7 @@ const TypeBar = observer((removeCategory)=> {
                     onClick={()=> product.setSelectedType(type)}
                     key={type.id}
                 >
-                    {type.name_type}
+                    {type.name}
                 </li>
             )}
         </>

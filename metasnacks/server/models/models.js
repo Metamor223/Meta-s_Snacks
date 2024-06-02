@@ -10,22 +10,25 @@ const User = sequelize.define('user',{
     role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
-const Basket = sequelize.define('basket',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    count:{type: DataTypes.INTEGER}
-})
+const Message = sequelize.define('message', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    senderId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'user', key: 'id' } },
+    receiverId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'user', key: 'id' } },
+    text: { type: DataTypes.TEXT, allowNull: false },
+    timestamp: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW }
+});
 
 const Orders = sequelize.define('order',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    detailsOrder: {type: DataTypes.STRING},
-    detailsCart: {type: DataTypes.STRING, allowNull:false},
-    price:{type: DataTypes.DOUBLE},
+    CompanyName: {type: DataTypes.STRING},
+    detailsOrder: {type: DataTypes.STRING, allowNull:false},
     orderDate:{type: DataTypes.DATE},
-    issued:{type: DataTypes.BOOLEAN}
+    price:{type: DataTypes.DECIMAL},
 })
 
-const BasketOrder = sequelize.define('basketOrder',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
+const Status = sequelize.define('status',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type:DataTypes.STRING}
 })
 
 const Product = sequelize.define('product',{
@@ -36,26 +39,9 @@ const Product = sequelize.define('product',{
     price:{type: DataTypes.INTEGER, allowNull:false}
 })
 
-const BasketProduct = sequelize.define('basketProduct',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
-})
-
-const Stats =sequelize.define('stats',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    salesQuantity:{type: DataTypes.INTEGER},
-    profit:{type: DataTypes.DECIMAL},
-    avgProfit:{type: DataTypes.DECIMAL}
-})
-
 const Warehouse = sequelize.define('warehouse',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     count:{type: DataTypes.INTEGER}
-})
-
-const Info =sequelize.define('info',{
-    id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title:{type: DataTypes.STRING, allowNull: false},
-    description:{type: DataTypes.STRING, allowNull:false}
 })
 
 const Type = sequelize.define('type',{
@@ -63,23 +49,8 @@ const Type = sequelize.define('type',{
     name:{type: DataTypes.STRING, allowNull:false, unique: true}
 })
 
-User.hasOne(Basket)
-Basket.belongsTo(User)
-
 User.hasMany(Orders)
 Orders.belongsTo(User)
-
-Basket.belongsToMany(Product, {'through': BasketProduct})
-Product.belongsToMany(Basket, {'through': BasketProduct})
-
-Orders.belongsToMany(Basket, {'through': BasketOrder})
-Basket.belongsToMany(Orders,{'through': BasketOrder})
-
-Product.hasMany(Stats)
-Stats.belongsTo(Product)
-
-Product.hasMany(Info)
-Info.belongsTo(Product)
 
 Product.hasMany(Warehouse)
 Warehouse.belongsTo(Product)
@@ -87,14 +58,15 @@ Warehouse.belongsTo(Product)
 Type.hasMany(Product)
 Product.belongsTo(Product)
 
+Status.hasMany(Orders)
+Orders.belongsTo(Status)
+
 module.exports = {
     User,
-    Basket,
     Orders,
     Product,
     Warehouse,
     Type,
-    Info,
-    Stats,
-    BasketOrder
+    Message,
+    Status
 }

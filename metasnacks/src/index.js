@@ -6,6 +6,7 @@ import './style.css';
 import UserStore from "./client/store/UserStore";
 import ProductStore from "./client/store/ProductStore";
 import WarehouseStore from "./client/store/WarehouseStore";
+import OrderStore from "./client/store/OrderStore";
 
 export const Context = createContext(null)
 console.log(process.env.REACT_APP_META_SNACKS)
@@ -16,7 +17,8 @@ root.render(
         <Context.Provider value={{
             user: new UserStore(),
             product: new ProductStore(),
-            ingredient: new WarehouseStore()
+            ingredient: new WarehouseStore(),
+            order: new OrderStore()
         }}>
         <App/>
         </Context.Provider>

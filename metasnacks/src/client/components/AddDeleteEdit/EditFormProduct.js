@@ -10,25 +10,35 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
     const [file,setFile] = useState(null)
     const [description,setDescription] = useState('')
     const [price,setPrice] = useState(0)
+    const [selectedTypeId, setSelectedTypeId] = useState(null);
+    const [typesLoading, setTypesLoading] = useState(true); // Track loading state
 
-    const {id} = useParams()
-
-    useEffect(() => {
-        fetchTypes().then(data=>product.setProduct({...product, typeProduct: data}));
-        if(id){
-            fetchOneProduct(id).then(data => setProduct(data))
-        }
-
-    }, [id,product]);
+    if (!Array.isArray(product.typeProduct)) {
+        return null;
+    }
 
     useEffect(() => {
-        if(selectedProduct){
-            setName(selectedProduct.Product_name);
-            setDescription(selectedProduct.description);
-            setPrice(selectedProduct.price);
-            setFile(selectedProduct.image_path);
+        try {
+            if (selectedProduct) {
+                setName(selectedProduct.Product_name);
+                setDescription(selectedProduct.description);
+                setPrice(selectedProduct.price);
+                setFile(selectedProduct.image_path);
+                setSelectedTypeId(selectedProduct.typeId)
+            }
+        } catch (e) {
+          console.error("Ошибка при обновлении состояния формы:",e)
         }
     }, [selectedProduct]);
+
+    useEffect(() => {
+            fetchTypes().then(types => {
+                setProduct(prevProduct => ({...prevProduct, typeProduct: types}));
+                setTypesLoading(false);
+            }).catch(error =>{
+                console.error("Error",error)
+            });
+    }, []);
 
     const selectFile = e => {
         setFile(e.target.files[0]);
@@ -38,7 +48,7 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
         const formData2 = new FormData();
         formData2.append('Product_name', name);
         formData2.append('image_path', file);
-        formData2.append('typeofproductId', product.selectedType.id);
+        formData2.append('typeId', selectedTypeId);
         formData2.append('description', description);
         formData2.append('price', `${price}`);
         const formDataObject = {};
@@ -51,6 +61,9 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
 
     return (
             <div className="FormCreate">
+                {typesLoading ? ( // Show a loading indicator while fetching types
+                    <div>Loading form...</div>
+                ) : (
                 <form>
                     <h2>Change Product</h2>
                     <input
@@ -60,13 +73,13 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
                     />
                     <input type="file" id="fileInput" onChange={selectFile}/>
                     <p>Select product category:
-                        <select>
-                            {product.typeProduct && (
-                                <option
-                                    onClick={() => product.setSelectedType({...product, selectedType: product.typeProduct})}
-                                    key={product.typeProduct.id}
-                                >
-                                    {product.typeProduct.name_type}
+                        <select
+                            value={selectedTypeId !== null ? selectedTypeId : ''}
+                            onChange={e => setSelectedTypeId(Number(e.target.value))}
+                        >
+                            {product.typeProduct.map(type=>
+                                <option key={type.id} value={type.id}>
+                                    {type.name}
                                 </option>
                             )}
                         </select>
@@ -86,6 +99,7 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
                         <li onClick={SaveProduct}>Save changes</li>
                     </div>
                 </form>
+                )}
             </div>
     );
 };

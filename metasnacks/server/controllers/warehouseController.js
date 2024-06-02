@@ -4,8 +4,8 @@ const path = require("path");
 class WarehouseController{
     async create(req,res){
         const {name, count} = req.body
-        const ingredient = await Warehouse.create({name, count})
-        return res.json(ingredient)
+        const product = await Warehouse.create({name, count})
+        return res.json(product)
     }
 
     async change(req,res){
@@ -29,8 +29,8 @@ class WarehouseController{
     }
 
     async getAll(req,res){
-        const ingredients = await Warehouse.findAll()
-        return res.json(ingredients)
+        const product = await Warehouse.findAll()
+        return res.json(product)
     }
 
     // async getOne(req,res){
@@ -42,12 +42,12 @@ class WarehouseController{
     async deleteOne(req,res){
         const id = parseInt(req.params.id,10)
         try {
-            const ingredient = await Warehouse.destroy({
+            const product = await Warehouse.destroy({
                 where: { id: id }
             });
-            if (ingredient) {
+            if (product) {
                 // Запись была успешно удалена
-                return res.json(ingredient);
+                return res.json(product);
             } else {
                 // Запись с указанным product_id не была найдена
                 return res.status(404).json({ error: 'Ingredient not found' });

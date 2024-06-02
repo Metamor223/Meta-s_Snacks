@@ -3,27 +3,26 @@ import './warehouse.css';
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import {changeIngredient, fetchIngredient} from "../../http/warehouseAPI";
-import IngredientList from "../../components/IngredientList";
-import AddIngredient from "../../components/AddDeleteEdit/AddIngredient";
+import ProductListForWarehouse from "../../components/ProductFiles/ProductListForWarehouse";
+import AddProducts from "../../components/AddDeleteEdit/AddProducts";
 
 const Warehouse = observer(() => {
 
-    const {ingredient} = useContext(Context)
+    const {product} = useContext(Context)
 
     const [change, setChange] = useState([])
 
     useEffect(() => {
         fetchIngredient().then(data=>{
-            ingredient.setIngredient(data);
+            product.setProduct(data);
             setChange(data);
         })
     }, []);
 
 
     const save = () => {
-
         changeIngredient(change).then(data => {
-            ingredient.setIngredient(data);
+            product.setProduct(data);
             setChange(data);
         });
     }
@@ -31,12 +30,11 @@ const Warehouse = observer(() => {
     return (
         <div className="WarehouseCatalog">
             <ul>
-                <IngredientList/>
+                <ProductListForWarehouse/>
             </ul>
             <button onClick={save}>Save changes</button>
-                <AddIngredient/>
+            <AddProducts/>
         </div>
     );
 });
-
 export default Warehouse;

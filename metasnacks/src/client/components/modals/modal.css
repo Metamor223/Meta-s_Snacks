@@ -19,10 +19,10 @@
 }
 
 .modal_content{
-    border: #00dfc4 1px solid;
+    border: #FFF 1px solid;
     padding: 20px;
     border-radius: 12px;
-    background-color: #1d2b3a;
+    background-color: #332546;
     height: max-content;
     max-height: 90%;
     width: 35%;
@@ -31,13 +31,13 @@
 select{
     margin-left: 30px;
     padding: 10px;
-    background-color: #1d2b3a;
-    color:#00dfc4;
+    background-color: #332546;
+    color:#FFF;
     border-radius: 5px;
-    border-color: #00dfc4;
+    border-color: #FFF;
 }
  option{
-    background-color: #1d2b3a;
+    background-color: #332546;
 }
 
 .optionsOfDataBase {
@@ -50,12 +50,12 @@ select{
 }
 
 input::placeholder{
-    color:#00dfc4;
+    color:#FFF;
 }
 
 input::file-selector-button{
     height: 100%;
-    background-color: #00dfc4;
+    background-color: #FFF;
 }
 
 form{
@@ -67,7 +67,7 @@ form{
 
 p{
     margin: 20px;
-    color:#00dfc4;
+    color:#FFF;
 }
 
 .ModalsButton{
@@ -83,11 +83,11 @@ p{
 }
 
 h2{
-    color:#00dfc4;
+    color:#FFF;
 }
 
 h3 {
-    color:#00dfc4;
+    color:#FFF;
     margin:2% 0 2% 0;
 }
 
@@ -111,24 +111,24 @@ h3 {
     width: 100%;
     font-size: 25px;
     list-style-type: none;
-    border-right: solid 1px #00dfc4;
-    color:#00dfc4;
+    border-right: solid 1px #FFF;
+    color:#FFF;
     transition: 0.5s;
 }
 
 .category li:hover{
-    background-color: #00dfc4;
-    color:#1d2b3a
+    background-color: #FFF;
+    color:#332546
 }
 
 .category li.active {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .category li:hover:not(.active) {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .modalForm{
@@ -168,38 +168,38 @@ h3 {
     cursor: pointer;
     width: 100%;
     list-style-type: none;
-    color:#00dfc4;
+    color:#FFF;
     transition: 0.5s;
 }
 
 .Fetch_product li:hover{
-    background-color: #00dfc4;
-    color:#1d2b3a;
+    background-color: #FFF;
+    color:#332546;
     .headerProduct p{
         transition: 0.5s;
-        color: #1d2b3a;
+        color: #332546;
     }
     .footerProduct p{
         transition: 0.5s;
-        color: #1d2b3a;
+        color: #332546;
     }
 }
 
 .Fetch_product li.active {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
     .headerProduct p{
         transition: 0.5s;
-        color: #1d2b3a;
+        color: #332546;
     }
     .footerProduct p{
         transition: 0.5s;
-        color: #1d2b3a;
+        color: #332546;
     }
 }
 
 .Fetch_product li:hover:not(.active) {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 

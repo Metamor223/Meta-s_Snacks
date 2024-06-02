@@ -3,7 +3,7 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    color:#00dfc4;
+    color:#FFF;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -25,7 +25,7 @@
 
 
 .info-body img{
-    border: 1px solid #00dfc4;
+    border: 1px solid #FFF;
     margin-bottom: 100px;
 }
 
@@ -66,15 +66,15 @@ button{
     padding: 5px 10px 5px 10px;
     border: none;
     outline: none;
-    background-color: #1d2b3a;
-    color:#00dfc4;
+    background-color: #332546;
+    color:#FFF;
     font-size: 40px;
     transition: 0.5s;
 }
 
 button:hover{
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .info-description button{

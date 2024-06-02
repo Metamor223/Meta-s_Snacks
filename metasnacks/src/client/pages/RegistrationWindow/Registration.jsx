@@ -11,12 +11,12 @@ const Registration = observer(() =>{
 
     const [email, setEmail] = useState('')
     const [organisationName, setOrganisationName] = useState('')
-    const [itn, setItn] = useState('')
+    const [contactName, setContactName] = useState('')
     const [password, setPassword] = useState('')
 
     const signUp = async () => {
         let data
-        data = await registration(email,organisationName,itn,password)
+        data = await registration(email,organisationName,contactName,password)
         user.setUser(data)
     }
 
@@ -40,10 +40,10 @@ const Registration = observer(() =>{
             </label>
             <label className="field__item">
                 <input type="text"
-                       required name="itn"
-                       value={itn}
-                       onChange={e => setItn(e.target.value)}/>
-                <span>ITN</span>
+                       required name="contactName"
+                       value={contactName}
+                       onChange={e => setContactName(e.target.value)}/>
+                <span>Contact name</span>
             </label>
             <label className="field__item">
                 <input type="password"

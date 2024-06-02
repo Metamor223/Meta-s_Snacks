@@ -7,7 +7,7 @@
 
 .WarehouseCatalog ul{
     width: 80%;
-    border: #00dfc4 1px solid;
+    border: #FFF 1px solid;
 }
 
 p{
@@ -35,7 +35,7 @@ form{
 }
 
 .ingredient{
-    border: #00dfc4 1px solid;
+    border: #FFF 1px solid;
     width: max-content;
     display: flex;
     flex-direction: column;
@@ -60,26 +60,26 @@ form{
 }
 
 .footerIngredient li{
-    border: #00dfc4 1px solid;
+    border: #FFF 1px solid;
     margin: 5px;
     min-width: min-content;
     cursor: pointer;
     list-style-type: none;
-    color:#00dfc4;
+    color:#FFF;
     transition: 0.5s;
 }
 
 .footerIngredient li:hover{
-    background-color: #00dfc4;
-    color:#1d2b3a
+    background-color: #FFF;
+    color:#332546
 }
 
 .footerIngredient li.active {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }
 
 .footerIngredient li:hover:not(.active) {
-    background-color: #00dfc4;
-    color: #1d2b3a;
+    background-color: #FFF;
+    color: #332546;
 }

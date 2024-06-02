@@ -6,7 +6,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import {fetchProducts, fetchTypes} from "../../http/productAPI";
 import TypeBar from "../../components/TypeBar";
-import ProductList from "../../components/ProductList";
+import ProductList from "../../components/ProductFiles/ProductList";
 import Pages from "../../components/Pages";
 
 const Catalog = observer(()=> {

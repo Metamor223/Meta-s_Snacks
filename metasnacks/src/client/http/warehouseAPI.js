@@ -1,7 +1,7 @@
 import {$authHost} from "./index";
 
-export const createIngredient = async (Ingredient) =>{
-    const {data} = await $authHost.post('api/warehouse', Ingredient)
+export const createIngredient = async (product) =>{
+    const {data} = await $authHost.post('api/warehouse', product)
     return data
 }
 

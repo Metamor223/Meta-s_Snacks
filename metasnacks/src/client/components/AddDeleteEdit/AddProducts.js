@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../../index";
-import {createProduct, fetchRecipe, fetchTypes} from "../../http/productAPI";
+import {createProduct, fetchTypes} from "../../http/productAPI";
 import {observer} from "mobx-react-lite";
 
 const AddProducts = observer(({setActive}) => {
@@ -10,13 +10,19 @@ const AddProducts = observer(({setActive}) => {
     const [file,setFile] = useState(null)
     const [description,setDescription] = useState('')
     const [price,setPrice] = useState(0)
+    const [selectedTypeId, setSelectedTypeId] = useState(null);
+    const [typesLoading, setTypesLoading] = useState(true); // Track loading state
 
     if (!Array.isArray(product.typeProduct)) {
         return null;
     }
 
     useEffect(() => {
-        fetchTypes().then(data => product.setTypeProduct(data))
+        fetchTypes()
+            .then(data => {
+                product.setTypeProduct(data);
+            })
+            .finally(() => setTypesLoading(false)); // Mark loading as done
     }, []);
 
     const selectFile = e => {
@@ -24,10 +30,16 @@ const AddProducts = observer(({setActive}) => {
     }
 
     const addProduct = () => {
+
+        if (selectedTypeId === null) {
+            alert("Please select a product type.");
+            return;
+        }
+
         const formData = new FormData()
         formData.append('Product_name', name)
         formData.append('image_path', file)
-        formData.append('typeId', product.selectedType.id)
+        formData.append('typeId', selectedTypeId)
         formData.append('description', description)
         formData.append('price', `${price}`)
         // Создаем объект для хранения данных из formData
@@ -36,11 +48,23 @@ const AddProducts = observer(({setActive}) => {
             formDataObject[key] = value;
         }
         console.log(formDataObject);
-        createProduct(formData).then(data => setActive())
+        createProduct(formData)
+            .then(data => {
+                console.log("Product created successfully:", data);
+                setActive();
+            })
+            .catch(error => {
+                console.error("Error creating product:", error);
+                console.log("Error response:", error.response);
+                // Display a user-friendly error message to the user
+            });
     }
 
     return (
         <div className="FormCreate">
+            {typesLoading ? ( // Show a loading indicator while fetching types
+                <div>Loading form...</div>
+            ) : (
             <form>
                 <input
                     placeholder="Enter product name"
@@ -49,13 +73,13 @@ const AddProducts = observer(({setActive}) => {
                 />
                 <input type="file" id="fileInput" onChange={selectFile}/>
                 <p>Select product category:
-                    <select>
+                    <select
+                        value={selectedTypeId}
+                        onChange={e => setSelectedTypeId(Number(e.target.value))}
+                        >
                         {product.typeProduct.map(type=>
-                            <option
-                                onClick={()=> product.setTypeProduct(type.id)}
-                                key={type.id}
-                            >
-                                {type.name_type}
+                            <option key={type.id} value={type.id}>
+                                {type.name}
                             </option>
                         )}
                     </select>
@@ -75,6 +99,7 @@ const AddProducts = observer(({setActive}) => {
                     <li onClick={addProduct}>Add product</li>
                 </div>
             </form>
+                )}
         </div>
     );
 });
