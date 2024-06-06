@@ -3,17 +3,17 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import ProductItemForWarehouse from "./ProductItemForWarehouse";
 
-const ProductList = observer(() => {
+const ProductListForWarehouse = observer(() => {
 
-    const {product} = useContext(Context)
+    const {warehouse} = useContext(Context)
 
     return (
         <>
-            {product.product.map(product=>
+            {warehouse.warehouse.map(product=>
                 <ProductItemForWarehouse key={product.id} product={product}/>
             )}
         </>
     );
 });
 
-export default ProductList;
+export default ProductListForWarehouse;

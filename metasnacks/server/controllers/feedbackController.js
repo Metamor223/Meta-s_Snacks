@@ -2,46 +2,46 @@ const { User,Message } = require("../models/models");
 const jwt = require('jsonwebtoken')
 
 class FeedbackController {
-    /*constructor(io) {
-        if (!io) {
-            throw new Error('Socket.io instance is required');
-        }
-        this.io = io;
-        this.users = {}; // Хранение активных пользователей
+    constructor(server) {
+        this.users = {};
+        this.server = server; // Store the server instance
 
-        this.io.on('connection', (socket) => {
-            console.log('User connected:', socket.id);
-            // Обработка авторизации (проверка токена)
-            socket.on('auth', async (token) => {
+        this.server.on('connection', (ws) => {
+            console.log('User connected:', ws.id);
+
+            ws.on('auth', async (token) => {
                 try {
-                    const decoded = jwt.verify(token, process.env.SECRET_KEY); // Проверка токена
+                    const decoded = jwt.verify(token, process.env.SECRET_KEY);
                     const userId = decoded.id;
 
-                    const user = await User.findByPk(userId); // userId из токена
+                    const user = await User.findByPk(userId);
                     if (!user) {
-                        return socket.emit('error', 'Неверный токен');
+                        return ws.emit('error', 'Invalid token'); // More specific error message
                     }
 
-                    this.users[socket.id] = user.id; // Сохраняем ID пользователя
-                    socket.join(`room-${user.id}`); // Подключаем к комнате пользователя
+                    this.users[ws.id] = user; // Store the user object, not just the ID
+                    ws.join(`room-${user.id}`);
                     console.log(`User ${user.id} joined room-${user.id}`);
 
+                    // Send initial user list to admins
                     if (user.role === 'ADMIN') {
-                        const users = await User.findAll({ where: { role: 'USER' } });
-                        socket.emit('userList', users);
+                        this.sendAdminUserList(ws);
                     }
 
+                    // Send unread messages to the user
+                    this.sendUnreadMessages(ws, user.id);
+
                 } catch (error) {
-                    console.error('Ошибка авторизации:', error);
-                    socket.emit('error', 'Ошибка авторизации');
+                    console.error('Authorization error:', error);
+                    ws.emit('error', 'Authorization error');
                 }
             });
 
-            socket.on('message', async (data) => {
+            ws.on('message', async (data) => {
                 try {
-                    const sender = this.users[socket.id];
+                    const sender = this.users[ws.id];
                     if (!sender) {
-                        return socket.emit('error', 'Не авторизован');
+                        return ws.emit('error', 'Not authorized');
                     }
 
                     const { receiverId, text } = data;
@@ -52,40 +52,58 @@ class FeedbackController {
                         text
                     });
 
-                    // Отправляем сообщение получателю
-                    socket.to(`room-${receiverId}`).emit('message', {
+                    const messageData = {
                         senderId: sender.id,
                         text,
-                        timestamp: Date.now(),
-                    });
+                        timestamp: message.createdAt.getTime(), // Use message creation timestamp
+                    };
 
+                    ws.to(`room-${receiverId}`).emit('message', messageData);
+
+                    // Send to admin if the sender is a user
                     if (sender.role === 'USER') {
                         const admin = await User.findOne({ where: { role: 'ADMIN' } });
                         if (admin) {
-                            socket.to(`room-${admin.id}`).emit('message', {
-                                senderId: sender.id,
-                                text,
-                                timestamp: Date.now(),
-                            });
+                            ws.to(`room-${admin.id}`).emit('message', messageData);
                         }
                     }
 
                 } catch (error) {
-                    console.error('Ошибка отправки сообщения:', error);
-                    socket.emit('error', 'Ошибка отправки сообщения');
+                    console.error('Message sending error:', error);
+                    ws.emit('error', 'Message sending error');
                 }
             });
 
-            socket.on('disconnect', () => {
-                const userId = this.users[socket.id];
-                if (userId) {
-                    delete this.users[socket.id];
-                    socket.leave(`room-${userId}`);
-                    console.log(`User ${userId} left room-${userId}`);
+            ws.on('disconnect', () => {
+                const user = this.users[ws.id]; // Use the user object
+                if (user) {
+                    delete this.users[ws.id];
+                    ws.leave(`room-${user.id}`);
+                    console.log(`User ${user.id} left room-${user.id}`);
                 }
             });
         });
-    }*/
+    }
+
+    // Helper function to send the user list to admins
+    async sendAdminUserList(ws) {
+        const users = await User.findAll({ where: { role: 'USER' } });
+        ws.emit('userList', users);
+    }
+
+    // Helper function to send unread messages to a user
+    async sendUnreadMessages(ws, userId) {
+        const messages = await Message.findAll({
+            where: { receiverId: userId }
+        });
+        messages.forEach(message => {
+            ws.emit('message', {
+                senderId: message.senderId,
+                text: message.text,
+                timestamp: message.createdAt.getTime()
+            });
+        });
+    }
 }
 
-module.exports = new FeedbackController();
+module.exports = FeedbackController;

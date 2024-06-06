@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const socketIo = require('socket.io')();
+const WebSocket = require('ws');
 const app = express()
 const sequelize = require('./db')
 const models = require('./models/models')
@@ -27,10 +27,8 @@ const start = async () => {
         await sequelize.authenticate()
         await sequelize.sync()
 
-        const server = app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
-
-        const io = socketIo(server)
-        const feedback = new FeedBackController(io);
+        const server = new WebSocket.Server({server: app.listen(PORT, () => console.log(`Server started on port ${PORT}`))})
+        const feedback = new FeedBackController(server);
     }
     catch (e) {
         console.log(e)

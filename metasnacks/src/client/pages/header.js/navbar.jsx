@@ -15,25 +15,25 @@ const Navbar = observer(() => {
     const {user} = useContext(Context)
 return (
     <header>
-    <Link to={CATALOG_ROUTE} className="site-title">Customs`naks</Link>
+    <Link to={CATALOG_ROUTE} className="site-title">Кастомные снеки</Link>
         <nav>
             <ul>
                 <li>
-                <CustomLink to={CATALOG_ROUTE}>Catalog</CustomLink>
+                <CustomLink to={CATALOG_ROUTE}>Каталог</CustomLink>
                     {user.isAuth ?
                         <>
                     <div className="loggedIn">
-                <CustomLink to={ORDERS_ROUTE}>Orders</CustomLink>
-                <CustomLink to={FEEDBACK_ROUTE}>Feedback</CustomLink>
-                <CustomLink to={CUSTOMERS_ROUTE}>Customers</CustomLink>
-                <CustomLink to={ADMIN_ROUTE}>Admin</CustomLink>
-                <CustomLink to={WAREHOUSE_ROUTE}>Warehouse</CustomLink>
-                <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Log Out</Link>
+                <CustomLink to={ORDERS_ROUTE}>Заказы</CustomLink>
+                <CustomLink to={FEEDBACK_ROUTE}>Общение с клиентами</CustomLink>
+                <CustomLink to={CUSTOMERS_ROUTE}>Заказчики</CustomLink>
+                <CustomLink to={ADMIN_ROUTE}>Админ панель</CustomLink>
+                <CustomLink to={WAREHOUSE_ROUTE}>Склад</CustomLink>
+                <Link to={LOGIN_ROUTE} onClick={()=> user.setIsAuth(false)}>Выход</Link>
                     </div>
                         </>
                         :
                 <>
-                <Link to={LOGIN_ROUTE}>Log In</Link>
+                <Link to={LOGIN_ROUTE}>Вход</Link>
                 </>
                 }
               </li>

@@ -1,35 +1,26 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, observable} from "mobx";
 
 export default class WarehouseStore{
     constructor() {
-        this._recipe = []
-        this._selectedRecipe = {}
-        this._ingredient = []
-        this._selectedIngredient = {}
+        this._warehouse = []
+        this._selectedWarehouse = {}
         makeAutoObservable(this)
     }
-    setIngredient(ingredient){
-        this._ingredient = ingredient
+    setWarehouse(warehouse){
+        this._warehouse = warehouse
+        console.log("Warehouse data updated:", this._warehouse);
     }
-    setRecipe(recipe){
-        this._recipe = recipe
+    setSelectedWarehouse(warehouse){
+        this._selectedWarehouse = warehouse
     }
-    setSelectedIngredient(ingredient){
-        this._selectedIngredient = ingredient
+    get warehouse(){
+        return this._warehouse
     }
-    setSelectedRecipe(recipe){
-        this._selectedRecipe = recipe
+    get selectedWarehouse(){
+        return this._selectedWarehouse
     }
-    get recipe(){
-        return this._recipe
-    }
-    get ingredient(){
-        return this._ingredient
-    }
-    get selectedRecipe(){
-        return this._selectedRecipe
-    }
-    get selectedIngredient(){
-        return this._selectedIngredient
+
+    updateProductCount(product, newCount) {
+        product.count = newCount;
     }
 }

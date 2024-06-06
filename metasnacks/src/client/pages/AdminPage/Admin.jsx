@@ -28,13 +28,13 @@ const AdminPage = observer(() => {
 
     return (
         <div className="actionList">
-            <li onClick={() => setModalProductsActive(true)}>Edit products</li>
-            <li onClick={() => setModalCategoriesActive(true)}>Edit categories</li>
+            <li onClick={() => setModalProductsActive(true)}>Редактирование продуктов</li>
+            <li onClick={() => setModalCategoriesActive(true)}>Редактирование категории</li>
 
             <ModalProducts active={modalProductsActive} setActive = {()=> setModalProductsActive(false)}/>
             <ModalCategories active={modalCategoriesActive} setActive = {() => setModalCategoriesActive(false)}/>
 
-            <li onClick={downloadFile}>downloadFile</li>
+            <li onClick={downloadFile}>Скачать файл с пользователями</li>
         </div>
     );
 });

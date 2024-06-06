@@ -2,6 +2,7 @@ import React, {useContext, useEffect}from 'react';
 import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
 import {deleteProduct, fetchProducts} from "../../http/productAPI";
+import {runInAction} from "mobx";
 
 const DeleteProducts = observer(({setActive}) => {
     const {product} = useContext(Context)
@@ -11,10 +12,12 @@ const DeleteProducts = observer(({setActive}) => {
     }, []);
     
     const DeleteProduct = () =>{
-        const productId = product.selectedProduct.product_id
-        deleteProduct(productId)
-            .then(data=>{setActive()})
-            .catch(error=>{console.error('Error deleting product:', error)})
+        runInAction(() => {
+            const productId = product.selectedProduct.product_id;
+            deleteProduct(productId)
+                .then(data => { setActive(); })
+                .catch(error => { console.error('Error deleting product:', error); });
+        });
     }
     
     return (

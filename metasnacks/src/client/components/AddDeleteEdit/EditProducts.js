@@ -3,9 +3,12 @@ import {fetchProducts} from '../../http/productAPI';
 import { Context } from '../../..';
 import { observer } from 'mobx-react-lite';
 import EditFormProduct from "./EditFormProduct";
+import {runInAction} from "mobx";
 
 const EditProducts = observer(({setActive}) => {
     const {product} = useContext(Context);
+
+
 
     const [editingProduct, setEditingProduct] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -15,11 +18,10 @@ const EditProducts = observer(({setActive}) => {
     }, []);
 
     const editProduct = (prod) => {
-        console.log("selectedProduct BEFORE:", selectedProduct);
-        product.setSelectedProduct(prod);
-        console.log("selectedProduct AFTER:", selectedProduct);
-        console.log("editingProduct:", editingProduct);
-        setEditingProduct(true);
+        runInAction(() => {
+            const productId = product.selectedProduct.product_id;
+            setEditingProduct(true);
+        });
     };
 
     return (

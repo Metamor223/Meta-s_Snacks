@@ -41,6 +41,7 @@ const Product = sequelize.define('product',{
 
 const Warehouse = sequelize.define('warehouse',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name:{type: DataTypes.STRING},
     count:{type: DataTypes.INTEGER}
 })
 

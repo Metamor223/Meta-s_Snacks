@@ -49,8 +49,7 @@ const Catalog = observer(()=> {
   return (
     <div className="catalogAppearance">
       <div className="categories">
-        <input type="text" placeholder="Search on catalog" value={searchQuery} onChange={handleSearchChange}/>
-        <label>Choose category:</label>
+        <label>Выбор категории:</label>
         <ul>
          <TypeBar/>
         </ul>

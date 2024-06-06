@@ -6,6 +6,8 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
 
     const [product, setProduct] = useState(selectedProduct)
 
+    const { product_id } = useParams();
+
     const [name,setName] = useState('')
     const [file,setFile] = useState(null)
     const [description,setDescription] = useState('')
@@ -13,7 +15,7 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
     const [selectedTypeId, setSelectedTypeId] = useState(null);
     const [typesLoading, setTypesLoading] = useState(true); // Track loading state
 
-    if (!Array.isArray(product.typeProduct)) {
+    if (selectedProduct && Array.isArray(product.typeProduct)) {
         return null;
     }
 
@@ -32,12 +34,11 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
     }, [selectedProduct]);
 
     useEffect(() => {
-            fetchTypes().then(types => {
-                setProduct(prevProduct => ({...prevProduct, typeProduct: types}));
-                setTypesLoading(false);
-            }).catch(error =>{
-                console.error("Error",error)
-            });
+        fetchTypes()
+            .then(data => {
+                setProduct(prevProduct => ({ ...prevProduct, typeProduct: data }));
+            })
+            .finally(() => setTypesLoading(false));
     }, []);
 
     const selectFile = e => {
