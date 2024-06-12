@@ -3,8 +3,10 @@ const router = new Router()
 const OrderController = require('../controllers/orderController')
 const authMiddleware = require("../middleware/authMiddleware");
 
-router.patch('/', OrderController.createOrder)
+router.post('/', OrderController.createOrder)
 router.get('/',OrderController.getAll)
+router.get('/status',OrderController.getStatuses)
 router.post('/status',OrderController.createStatus)
+router.patch('/',OrderController.EditOrder)
 
 module.exports = router

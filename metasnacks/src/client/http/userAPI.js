@@ -19,6 +19,11 @@ export const check = async () => {
  return jwtDecode(data.token)
 }
 
+export const fetchUserDetail = async (userId) =>{
+ const {data} = await $authHost.get('api/user/' + userId)
+ return data
+}
+
 export const fetchUsers = async () => {
  try {
   const {data} = await $authHost.get('api/user/'); // Преобразуем в JSON

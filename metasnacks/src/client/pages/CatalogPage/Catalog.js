@@ -14,23 +14,6 @@ const Catalog = observer(()=> {
 
   const {product} = useContext(Context)
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const filterProducts = () => {
-    let filteredProducts = product;
-
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filteredProducts = filteredProducts.filter(
-        (product) =>
-          (product.name && product.name.toLowerCase().includes(query))
-      );
-    }
-    return filteredProducts;
-  };
-
   useEffect(() => {
     fetchTypes().then(data=>product.setTypeProduct(data));
     fetchProducts(null,8, product.page).then(data=> {

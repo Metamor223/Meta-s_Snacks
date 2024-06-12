@@ -7,9 +7,6 @@ import {runInAction} from "mobx";
 
 const EditProducts = observer(({setActive}) => {
     const {product} = useContext(Context);
-
-
-
     const [editingProduct, setEditingProduct] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -20,6 +17,7 @@ const EditProducts = observer(({setActive}) => {
     const editProduct = (prod) => {
         runInAction(() => {
             const productId = product.selectedProduct.product_id;
+            setSelectedProduct(productId);
             setEditingProduct(true);
         });
     };

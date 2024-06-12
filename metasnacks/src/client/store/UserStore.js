@@ -18,6 +18,10 @@ export default class UserStore{
         this._user = user
     }
 
+    setRole(role){
+        this._user.role = role
+    }
+
     get isAuth(){
         return this._isAuth
     }

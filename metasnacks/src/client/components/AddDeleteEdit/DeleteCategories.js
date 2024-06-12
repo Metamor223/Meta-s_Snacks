@@ -32,7 +32,7 @@ const DeleteCategories = observer(({setActive}) => {
                         onClick={()=> product.setSelectedType(type)}
                         key={type.id}
                     >
-                        {type.name_type}
+                        {type.name}
                     </li>
                 )}
                 </ul>

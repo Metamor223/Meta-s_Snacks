@@ -1,15 +1,20 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Context} from "../../../index";
-import {createProduct} from "../../http/productAPI";
-import {createOrder, fetchOrders} from "../../http/orderAPI";
+import {createOrder, fetchOrders, fetchStatus} from "../../http/orderAPI";
 
-const ModalOrders = ({order}) => {
+const ModalOrders = ({refetchData}) => {
+
+    const {order} = useContext(Context)
+
+    if (!Array.isArray(order.status)) {
+        return null;
+    }
 
     const [companyName, setCompanyName] = useState('')
     const [detailOrder, setDetailOrder] = useState('')
     const [dateOrder, setDateOrder] = useState('')
     const [price, setPrice] = useState(0)
-    const [status, setStatus] = useState('')
+    const [selectedStatus, setSelectedStatus] = useState(null)
 
     const addOrder = () => {
         const formData = new FormData()
@@ -17,7 +22,7 @@ const ModalOrders = ({order}) => {
         formData.append('detailsOrder', detailOrder)
         formData.append('orderDate', dateOrder)
         formData.append('price', `${price}`)
-        formData.append('statusId', status.id)
+        formData.append('statusId', selectedStatus)
         // Создаем объект для хранения данных из formData
         const formDataObject = {};
         for (const [key, value] of formData.entries()) {
@@ -25,6 +30,7 @@ const ModalOrders = ({order}) => {
         }
         console.log(formDataObject);
         createOrder(formData).then()
+        refetchData();
     }
 
     if (!Array.isArray(order.status)) {
@@ -32,44 +38,44 @@ const ModalOrders = ({order}) => {
     }
 
     return (
-        <>
+        <div className="ModalOrder">
             <form>
                 <input
-                    placeholder="Enter product name"
+                    placeholder="Введите название компании"
                     value={companyName}
                     onChange={e=> setCompanyName(e.target.value)}
                 />
                 <input
-                    placeholder="Enter product description"
+                    placeholder="Введите детали заказа"
                     value={detailOrder}
                     onChange={e=> setDetailOrder(e.target.value)}
                 />
+                <p> Стоимость заказа
                 <input
-                    placeholder="Enter product price"
+                    placeholder=""
                     value={price}
                     onChange={e=> setPrice(Number(e.target.value))}
                 />
+                </p>
+                <p> Дата заказа
                 <input
                     type='date'
-                    placeholder="Enter product price"
+                    placeholder="Enter product dating"
                     value={dateOrder}
-                    onChange={e=> setDateOrder(dateOrder)}
+                    onChange={e=> setDateOrder(e.target.value)}
                 />
-                <select>
+                </p>
+                <select value={selectedStatus}
+                        onChange={e=>setSelectedStatus(Number(e.target.value))}>
                     {order.status.map(status=>
-                        <option
-                            onClick={()=> order.setStatus(status)}
-                            key={status.id}
-                        >
+                        <option key={status.id} value={status.id}>
                             {status.name}
                         </option>
                     )}
                 </select>
-                <div className="ModalsButton">
-                    <li onClick={addOrder}>Add order</li>
-                </div>
+                    <li onClick={addOrder}>Добавить заказ</li>
             </form>
-        </>
+        </div>
     );
 };
 

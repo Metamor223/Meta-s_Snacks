@@ -12,7 +12,8 @@ class ProductController{
             const count = 0
             let fileName = uuid.v4() + ".jpg"
             image_path.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const product = await Product.create({Product_name, image_path: fileName, description, price,typeId})
+            const product = await Product.create(
+                {Product_name, image_path: fileName, description, price,typeId})
             const productInWarehouse = await Warehouse.create(
                 {name: Product_name, count: 0, productProductId: product.product_id})
             return res.json(product)

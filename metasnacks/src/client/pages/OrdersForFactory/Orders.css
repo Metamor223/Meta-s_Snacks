@@ -36,3 +36,37 @@ table td{
 table tbody tr{
     border: 1px solid white;
 }
+
+.ModalOrder{
+    width: 100%;
+}
+
+.ModalOrder form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.ModalOrder form input{
+    margin: 10px;
+    width: max-content;
+}
+
+.ModalOrder form li{
+    list-style: none;
+    border: white 1px solid;
+    color: white;
+    padding: 7px;
+}
+
+.ModalOrder form li:hover{
+    background-color: white;
+    color: #332546;
+    cursor: pointer;
+}
+
+.ModalOrder form select{
+    margin: 20px 0 20px 0;
+}

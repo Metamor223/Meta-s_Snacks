@@ -5,7 +5,6 @@ import {useParams} from "react-router-dom";
 const EditFormProduct = ({setActive,selectedProduct}) => {
 
     const [product, setProduct] = useState(selectedProduct)
-
     const { product_id } = useParams();
 
     const [name,setName] = useState('')
@@ -20,8 +19,19 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
     }
 
     useEffect(() => {
+        fetchTypes()
+            .then(data => {
+                setProduct(prevProduct => ({ ...prevProduct, typeProduct: data }));
+            })
+            .finally(() => setTypesLoading(false));
+        if(product_id) {
+            fetchOneProduct(product_id).then(data => setProduct(data))
+        }
+    }, [product_id]);
+
+    useEffect(() => {
         try {
-            if (selectedProduct) {
+            if (selectedProduct && Array.isArray(product.typeProduct)) {
                 setName(selectedProduct.Product_name);
                 setDescription(selectedProduct.description);
                 setPrice(selectedProduct.price);
@@ -29,17 +39,9 @@ const EditFormProduct = ({setActive,selectedProduct}) => {
                 setSelectedTypeId(selectedProduct.typeId)
             }
         } catch (e) {
-          console.error("Ошибка при обновлении состояния формы:",e)
+            console.error("Ошибка при обновлении состояния формы:",e)
         }
-    }, [selectedProduct]);
-
-    useEffect(() => {
-        fetchTypes()
-            .then(data => {
-                setProduct(prevProduct => ({ ...prevProduct, typeProduct: data }));
-            })
-            .finally(() => setTypesLoading(false));
-    }, []);
+    }, [selectedProduct,product.typeProduct]);
 
     const selectFile = e => {
         setFile(e.target.files[0]);

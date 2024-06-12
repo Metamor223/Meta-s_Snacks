@@ -6,7 +6,7 @@ export const fetchWarehouse = async () =>{
 }
 
 export const changeWarehouse = async (updates) =>{
-    const {data} = await $authHost.patch('api/warehouse', updates)
-    console.log("ДЛЯ СОХРАНЕНИЯ",data)
+    const {data} = await $authHost.patch('api/warehouse',{updates: updates})
+    console.log("ДЛЯ СОХРАНЕНИЯ",updates)
     return data
 }

@@ -16,5 +16,7 @@ module.exports = function (req,res, next){
     }
     catch(e){
         res.status(401).json({message: {e}})
+        ws.emit('error', 'Invalid token');
+        ws.close(); // Close the connection if authentication fails
     }
 }
