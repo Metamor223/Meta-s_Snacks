@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Context} from "../../../index";
 import {registration} from "../../http/userAPI";
+import "./AddManager.css";
 
 const AddManager = ({setActive}) => {
     const {user} = useContext(Context)
@@ -14,10 +15,11 @@ const AddManager = ({setActive}) => {
         let data
         data = await registration(email,organisationName,contactName,password)
         user.setUser(data)
+        setActive();
     }
 
     return (
-        <div>
+        <div className="ManagerForm">
             <form className="form">
                 <label className="field__item">
                     <input type="text"
@@ -25,13 +27,6 @@ const AddManager = ({setActive}) => {
                            value={email}
                            onChange={e => setEmail(e.target.value)}/>
                     <span>email</span>
-                </label>
-                <label className="field__item">
-                    <input type="text"
-                           required name="organisation_name"
-                           value={organisationName}
-                           onChange={e => setOrganisationName(e.target.value)}/>
-                    <span>Name of organization</span>
                 </label>
                 <label className="field__item">
                     <input type="text"

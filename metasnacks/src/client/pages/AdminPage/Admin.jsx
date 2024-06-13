@@ -45,7 +45,7 @@ const AdminPage = observer(() => {
             <li onClick={() => setModalProductsActive(true)}>Редактирование продуктов</li>
 
             <li onClick={() => setModalCategoriesActive(true)}>Редактирование категории</li>
-            {user && user.User && user.User.role === 'ADMIN' && (
+            {user.User && user.User.role === 'ADMIN' && (
                 <li onClick={() => setModalRegistrationActive(true)}>Редактирование пользователей</li>
             )}
             <ModalProducts active={modalProductsActive} setActive = {()=> setModalProductsActive(false)}/>

@@ -1,0 +1,12 @@
+.ManagerForm{
+    width: 100%;
+}
+
+.ManagerForm form{
+    width: 70%;
+    margin: 30px auto 10px auto;
+}
+
+.ManagerForm li{
+    width: max-content;
+}

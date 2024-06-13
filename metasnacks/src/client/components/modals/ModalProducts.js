@@ -17,15 +17,15 @@ const ModalProducts = ({active,setActive}) => {
                 <h2>Product editing window</h2>
                 <div className="optionsOfDataBase">
                     <li onClick={() => handleActionChange('ADD')}>Add</li>
-                    <li onClick={() => handleActionChange('EDIT')}>Edit</li>
+                    {/*<li onClick={() => handleActionChange('EDIT')}>Edit</li>*/}
                     <li onClick={() => handleActionChange('DELETE')}>Delete</li>
                 </div>
                 {action === 'ADD' && (
                     <AddProducts setActive={setActive} />
                 )}
-                {action === 'EDIT' && (
-                    <EditProducts setActive={setActive}/>
-                )}
+                {/*{action === 'EDIT' && (*/}
+                {/*    <EditProducts setActive={setActive}/>*/}
+                {/*)}*/}
                 {action === 'DELETE' && (
                     <DeleteProducts setActive={setActive}/>
                 )}
