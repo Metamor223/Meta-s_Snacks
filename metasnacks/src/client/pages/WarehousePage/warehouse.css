@@ -1,6 +1,6 @@
 .WarehouseCatalog{
     margin: auto;
-    max-width: 90%;
+    width: 90%;
     display: flex;
     justify-content: space-around;
 }
@@ -8,31 +8,15 @@
 .WarehouseCatalog ul{
     width: 80%;
     border: #FFF 1px solid;
-}
-
-p{
-    display:flex;
-    align-items: center;
-}
-
-.List{
     display: flex;
-}
-
-.from li{
-    margin: 30px;
-    font-size: 18px;
-    height: max-content;
-    width: max-content;
+    flex-wrap: wrap;
 }
 
 .WarehouseCatalog input{
     margin-left: 30px;
 }
 
-form{
-    margin-left: 3%;
-}
+
 
 .ingredient{
     border: #FFF 1px solid;
@@ -50,13 +34,16 @@ form{
 .footerIngredient{
     min-width: max-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
 .footerIngredient input{
     text-align: center;
-    margin-right: 20%;
+}
+
+.footerIngredient p{
+    margin: 20px 20px 20px 5px;
 }
 
 .footerIngredient li{

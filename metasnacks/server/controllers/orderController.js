@@ -22,31 +22,35 @@ class OrderController{
 
     async EditOrder(req,res,next){
         try {
-            const {updates} = req.body;
+            const { updates } = req.body;
             const { id, statusId } = updates;
-            const [affectedRows, [updatedOrder]] = await Orders.update(
-                {
-                    statusId
-                },
-                {
-                    where: { id: id },
-                    returning: true // Return the updated record
-                }
+
+            // Логируем данные ДО обновления
+            const orderBeforeUpdate = await Orders.findOne({ where: { id } });
+            console.log("Order BEFORE update:", orderBeforeUpdate.get({ plain: true }));
+
+            const [, [updatedOrder]] = await Orders.update(
+                { statusId },
+                { where: { id }, returning: true, silent: true }
             );
 
-            return res.json(updatedOrder); // Send the updated record
+            // Логируем данные ПОСЛЕ обновления
+            console.log("Order AFTER update:", updatedOrder.get({ plain: true }));
+
+            return res.json(updatedOrder);
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
     }
 
-    async getAll(req,res){
+    async getAll(req,res,next){
         try {
-           const orders = await Orders.findAll()
-           return res.json(orders)
-        }
-        catch (e) {
-            return res.json(e)
+            const orders = await Orders.findAll({
+                order: [['id', 'ASC']]  // Сортировка по id по возрастанию
+            });
+            return res.json(orders);
+        } catch (e) {
+            next(ApiError.badRequest(e.message));
         }
     }
 

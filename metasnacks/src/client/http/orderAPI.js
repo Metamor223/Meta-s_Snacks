@@ -17,6 +17,6 @@ export const fetchStatus = async () => {
 
 export const editOrder = async (updates) =>{
     console.log("Номер заказа:", updates);
-    const {data} = await $authHost.patch('api/order/',{updates: updates})
+    const {data} = await $authHost.put('api/order/',{updates: updates})
     return data
 }

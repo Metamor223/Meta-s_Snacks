@@ -47,19 +47,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.info-description span{
-    font-size: 20px;
-    
-}
-
-.info-description p{
     padding-top: 100px;
     text-align: start;
     font-size: 30px;
     line-height: 0.5;
-    max-width: 100%;
+}
+
+.info-description p span{
+    font-size: 17px;
+    margin: 5px;
+    flex-wrap: wrap;
 }
 
 button{

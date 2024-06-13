@@ -1,6 +1,7 @@
-const {Warehouse} = require('../models/models')
+const {Warehouse, Orders} = require('../models/models')
 const uuid = require("uuid");
 const path = require("path");
+const ApiError = require("../error/ApiError");
 class WarehouseController{
 
     async change(req,res){
@@ -24,9 +25,15 @@ class WarehouseController{
         }
     }
 
-    async getAll(req,res){
-        const product = await Warehouse.findAll()
-        return res.json(product)
+    async getAll(req,res,next){
+        try {
+            const product = await Warehouse.findAll({
+                order: [['id', 'ASC']]  // Сортировка по id по возрастанию
+            });
+            return res.json(product);
+        } catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
     }
 }
 

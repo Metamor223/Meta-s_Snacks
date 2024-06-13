@@ -14,11 +14,11 @@ const ModalProducts = ({active,setActive}) => {
     return (
         <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
             <div className="modal_content" onClick={e=>e.stopPropagation()}>
-                <h2>Product editing window</h2>
+                <h2>Окно изменений продуктов</h2>
                 <div className="optionsOfDataBase">
-                    <li onClick={() => handleActionChange('ADD')}>Add</li>
+                    <li onClick={() => handleActionChange('ADD')}>Добавить</li>
                     {/*<li onClick={() => handleActionChange('EDIT')}>Edit</li>*/}
-                    <li onClick={() => handleActionChange('DELETE')}>Delete</li>
+                    <li onClick={() => handleActionChange('DELETE')}>Удалить</li>
                 </div>
                 {action === 'ADD' && (
                     <AddProducts setActive={setActive} />

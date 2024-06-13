@@ -67,12 +67,12 @@ const AddProducts = observer(({setActive}) => {
             ) : (
             <form>
                 <input
-                    placeholder="Enter product name"
+                    placeholder="Введите название продукта"
                     value={name}
                     onChange={e=> setName(e.target.value)}
                 />
                 <input type="file" id="fileInput" onChange={selectFile}/>
-                <p>Select product category:
+                <p>Выберите категорию для продукта:
                     <select
                         value={selectedTypeId}
                         onChange={e => setSelectedTypeId(Number(e.target.value))}
@@ -85,18 +85,18 @@ const AddProducts = observer(({setActive}) => {
                     </select>
                 </p>
                 <input
-                    placeholder="Enter product description"
+                    placeholder="Введите описание продукта"
                     value={description}
                     onChange={e=> setDescription(e.target.value)}
                 />
                 <input
-                    placeholder="Enter product price"
+                    placeholder="Введите цену продукта"
                     value={price}
                     onChange={e=> setPrice(Number(e.target.value))}
                 />
                 <div className="ModalsButton">
-                    <li>Close window</li>
-                    <li onClick={addProduct}>Add product</li>
+                    <li onClick={setActive}>Закрыть окно</li>
+                    <li onClick={addProduct}>Добавить продукт</li>
                 </div>
             </form>
                 )}

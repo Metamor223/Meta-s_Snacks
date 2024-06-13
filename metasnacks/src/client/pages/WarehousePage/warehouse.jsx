@@ -57,27 +57,22 @@ const Warehouse = observer(() => {
 
     return (
         <div className="WarehouseCatalog">
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : warehouse.warehouse.length > 0 ? (
                 <ul>
                     {change.map((product) => (
-                        <div className={"product"}
+                        <div className={"ingredient"}
                              key={product.id}>
-                            <div className="headerProduct">
+                            <div className="headerIngredient">
                                 <p>{product.name}</p>
                             </div>
-                            <div className="footerProduct">
-                                <p><input type="number" value={product.count} onChange={(e)=> handleChange(product.id, parseInt(e.target.value, 10) || 0)}/>шт</p>
+                            <div className="footerIngredient">
+                                <input type="number" value={product.count} onChange={(e)=> handleChange(product.id, parseInt(e.target.value, 10) || 0)}/>
+                                <p>шт</p>
                             </div>
                         </div>
                     ))}
                 </ul>
-            ) : (
-                <p>No products found.</p>
-            )}
             <button onClick={save} disabled={isLoading}>
-                Save changes
+                Сохранить изменения
             </button>
         </div>
     );

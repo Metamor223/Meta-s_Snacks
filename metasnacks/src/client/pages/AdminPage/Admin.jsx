@@ -52,7 +52,7 @@ const AdminPage = observer(() => {
             <ModalCategories active={modalCategoriesActive} setActive = {() => setModalCategoriesActive(false)}/>
             <ModalUsers active={modalRegistrationActive} setActive = {()=> setModalRegistrationActive(false)}/>
 
-            <li onClick={downloadFile}>Скачать файл с пользователями</li>
+            <li onClick={downloadFile}>Скачать файл с клиентами</li>
         </div>
     );
 });

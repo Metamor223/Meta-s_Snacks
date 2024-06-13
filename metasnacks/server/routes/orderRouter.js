@@ -7,6 +7,6 @@ router.post('/', OrderController.createOrder)
 router.get('/',OrderController.getAll)
 router.get('/status',OrderController.getStatuses)
 router.post('/status',OrderController.createStatus)
-router.patch('/',OrderController.EditOrder)
+router.put('/',OrderController.EditOrder)
 
 module.exports = router

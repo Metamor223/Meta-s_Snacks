@@ -39,12 +39,12 @@ const ModalCustomers = ({refetchData}) => {
                     onChange={e=> setContactName(e.target.value)}
                 />
                 <input
-                    placeholder="Введите название организации"
+                    placeholder="Название организации"
                     value={organisation_name}
                     onChange={e=> setOrganisation_name(e.target.value)}
                 />
                     <input
-                        placeholder="Откуда узнал заказчик о компании"
+                        placeholder="Откуда узнал о компании"
                         value={comeFrom}
                         onChange={e=> setComeFrom(e.target.value)}
                     />
