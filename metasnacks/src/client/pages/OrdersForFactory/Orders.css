@@ -51,7 +51,8 @@ table tbody tr{
 
 .ModalOrder form input{
     margin: 10px;
-    width: max-content;
+    min-width: max-content;
+    padding: 5px;
 }
 
 .ModalOrder form li{

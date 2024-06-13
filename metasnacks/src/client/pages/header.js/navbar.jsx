@@ -22,11 +22,11 @@ return (
             <ul>
                 <li>
                 <CustomLink to={CATALOG_ROUTE}>Каталог</CustomLink>
+                    <CustomLink to={CONTACT_ROUTE}>Контакты</CustomLink>
                     {user.isAuth ?
                         <>
                     <div className="loggedIn">
                 <CustomLink to={ORDERS_ROUTE}>Заказы</CustomLink>
-                <CustomLink to={CONTACT_ROUTE}>Контакты</CustomLink>
                 <CustomLink to={CUSTOMERS_ROUTE}>Заказчики</CustomLink>
                 <CustomLink to={ADMIN_ROUTE}>Админ панель</CustomLink>
                 <CustomLink to={WAREHOUSE_ROUTE}>Склад</CustomLink>

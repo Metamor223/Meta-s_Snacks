@@ -26,7 +26,6 @@ const ProductPageInfo = observer(({onClose, selectedProduct}) => {
         <img src={process.env.REACT_APP_META_SNACKS + "/" + product.image_path} alt={product.Product_name} style={{ width: '20vw' }}/>
             <div className="info-description">
                 <p>Price: {product.price}</p>
-                <button>Add to Cart</button>
                 <p>Description :  <span>{product.description}</span></p>
             </div>
       </div>

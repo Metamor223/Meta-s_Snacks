@@ -12,14 +12,6 @@ const User = sequelize.define('user',{
     role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
-const Message = sequelize.define('message', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    senderId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'user', key: 'id' } },
-    receiverId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'user', key: 'id' } },
-    text: { type: DataTypes.TEXT, allowNull: false },
-    timestamp: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW }
-});
-
 const Orders = sequelize.define('order',{
     id:{type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     CompanyName: {type: DataTypes.STRING},
@@ -70,6 +62,5 @@ module.exports = {
     Product,
     Warehouse,
     Type,
-    Message,
     Status
 }

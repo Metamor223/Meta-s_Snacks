@@ -57,10 +57,6 @@ const LogIn = observer(() =>{
                     <span>Пароль</span>
                 </label>
                 <Link className="button__item" type="button" to={CATALOG_ROUTE} onClick={signIn}>LogIn</Link>
-                <div className="register_item">
-                    <p>Don`t have account ?</p>
-                    <Link className="button__item" to={REGISTRATION_ROUTE}>Registration</Link>
-                </div>
             </form>
         </div>
     )  

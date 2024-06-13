@@ -19,7 +19,7 @@
     justify-content: space-around;
     height: 90%;
     width: 90%;
-    background-color: rgba(29, 43, 58, .9);
+    background-color: rgba(51, 37, 70, 1);;
     padding: 1% 0 3% 0;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .info-description span{
-    font-size: 14px;
+    font-size: 20px;
     
 }
 
