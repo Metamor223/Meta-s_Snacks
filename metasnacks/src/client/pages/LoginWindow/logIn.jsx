@@ -12,11 +12,12 @@ const LogIn = observer(() =>{
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [contactName, setContactName] = useState('')
 
     const signIn = async () => {
         try {
             let data
-            data = await login(email, password)
+            data = await login(email, contactName, password)
             user.setUser(data)
             user.setIsAuth(true)
         }
@@ -37,7 +38,15 @@ const LogIn = observer(() =>{
                         required="required"
                         value={email}
                         onChange={e => setEmail(e.target.value)}/>
-                    <span>email</span>
+                    <span>Почта</span>
+                </label>
+                <label className="field__item">
+                    <input
+                        type="text"
+                        required="required"
+                        value={contactName}
+                        onChange={e => setContactName(e.target.value)}/>
+                    <span>Имя</span>
                 </label>
                 <label className="field__item">
                     <input
@@ -45,8 +54,7 @@ const LogIn = observer(() =>{
                         required="required"
                         value={password}
                         onChange={e => setPassword(e.target.value)}/>
-                    <span>Password</span>
-
+                    <span>Пароль</span>
                 </label>
                 <Link className="button__item" type="button" to={CATALOG_ROUTE} onClick={signIn}>LogIn</Link>
                 <div className="register_item">

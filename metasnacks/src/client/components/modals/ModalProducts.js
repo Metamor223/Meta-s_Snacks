@@ -1,9 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import "./modal.css";
-import {createProduct, fetchTypes} from "../../http/productAPI";
-import {Context} from "../../../index";
-import {observer} from "mobx-react-lite";
-import AddCategories from "../AddDeleteEdit/AddCategories";
 import AddProducts from "../AddDeleteEdit/AddProducts";
 import EditProducts from "../AddDeleteEdit/EditProducts";
 import DeleteProducts from "../AddDeleteEdit/DeleteProducts";

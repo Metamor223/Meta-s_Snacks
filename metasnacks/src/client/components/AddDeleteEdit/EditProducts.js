@@ -35,7 +35,7 @@ const EditProducts = observer(({setActive}) => {
                                     key={prod.product_id}
                                 >
                                     <div className="headerProduct">
-                                        <img src={process.env.REACT_APP_META_SNACKS + "/" + prod.image_path} alt={prod.Product_name} style={{ width: '13vw' }}/>
+                                        <img src={process.env.REACT_APP_META_SNACKS + "/" + prod.image_path} alt={prod.Product_name} style={{ width: '10vw' }}/>
                                         <p>{prod.Product_name}</p>
                                     </div>
                                     <div className="footerProduct">
@@ -45,7 +45,7 @@ const EditProducts = observer(({setActive}) => {
                             </div>
                         ))}
                     </ul>
-                    <li onClick={editProduct}>Edit product</li>
+                    <li onClick={editProduct} >Edit product</li>
                 </div>
             )}
         </div>

@@ -10,11 +10,11 @@
     text-align: center;
     flex-wrap: wrap;
     }
-    
+
     h1{
         color:#FFF;
     }
-    
+
     .form{
         height: 30%;
         width: 20%;
@@ -24,12 +24,12 @@
         border-radius: 10px;
         padding: 30px;
     }
-    
+
     .field__item
     {
         position: relative;
     }
-    
+
     .field__item input{
         margin-bottom: 15px;
         width: 100%;
@@ -42,7 +42,7 @@
         font-size: 1em;
         transition: 0.5s;
     }
-    
+
     .field__item span{
     position: absolute;
     left: 0;
@@ -53,7 +53,7 @@
     text-transform: uppercase;
     transition: 0.5s;
     }
-    
+
     .field__item input:valid ~ span,
     .field__item input:focus ~ span
     {
@@ -66,12 +66,12 @@
     border-right: 1px solid #FFF;
     letter-spacing: 0.2em;
     }
-    
+
     .field__item input:valid,
     .field__item input:focus{
         border: 1px solid #FFF;
     }
-    
+
     input{
         height: 40px;
         width: 100px;
@@ -81,13 +81,13 @@
         transition: 0.5s;
         border-radius: 5px;
     }
-    
+
     input:hover{
         background: #FFF;
         color: #332546;
         transition: 0.5s;
     }
-    
+
     a{
         vertical-align:auto;
         text-align: center;
@@ -101,7 +101,7 @@
         transition: 0.5s;
         border-radius: 5px;
     }
-    
+
     a:hover{
         background: #FFF;
         color: #332546;

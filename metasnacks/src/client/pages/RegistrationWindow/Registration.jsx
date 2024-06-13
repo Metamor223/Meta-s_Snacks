@@ -7,55 +7,10 @@ import {Context} from "../../../index";
 import {registration} from "../../http/userAPI";
 
 const Registration = observer(() =>{
-    const {user} = useContext(Context)
 
-    const [email, setEmail] = useState('')
-    const [organisationName, setOrganisationName] = useState('')
-    const [contactName, setContactName] = useState('')
-    const [password, setPassword] = useState('')
-
-    const signUp = async () => {
-        let data
-        data = await registration(email,organisationName,contactName,password)
-        user.setUser(data)
-    }
 
     return(
-     <div className="containerRegistration" >
-        <h1>Registration</h1>
-        <form className="form">
-            <label className="field__item">
-                <input type="text"
-                       required name="email"
-                       value={email}
-                       onChange={e => setEmail(e.target.value)}/>
-                <span>email</span>
-            </label>
-            <label className="field__item">
-                <input type="text"
-                       required name="organisation_name"
-                       value={organisationName}
-                       onChange={e => setOrganisationName(e.target.value)}/>
-                <span>Name of organization</span>
-            </label>
-            <label className="field__item">
-                <input type="text"
-                       required name="contactName"
-                       value={contactName}
-                       onChange={e => setContactName(e.target.value)}/>
-                <span>Contact name</span>
-            </label>
-            <label className="field__item">
-                <input type="password"
-                       required name="password"
-                       value={password}
-                       onChange={e => setPassword(e.target.value)}/>
-                <span>Password</span>
-            </label>
-            <Link className="button__item" type="submit" to={LOGIN_ROUTE} onClick={signUp}>Registration</Link>
-            <Link className="button__item" type="button" to={LOGIN_ROUTE}>Back</Link>
-        </form>
-     </div>    
+        <></>
     )
 })
 

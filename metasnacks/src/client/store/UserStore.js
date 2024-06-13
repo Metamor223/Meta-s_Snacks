@@ -18,8 +18,13 @@ export default class UserStore{
         this._user = user
     }
 
-    setRole(role){
-        this._user.role = role
+    setRole(role) {
+        if (this._user) {
+            this._user.role = role;
+            console.log("Role set:", role); // Добавьте логирование здесь
+        } else {
+            console.log("User is not set when trying to set role");
+        }
     }
 
     get isAuth(){

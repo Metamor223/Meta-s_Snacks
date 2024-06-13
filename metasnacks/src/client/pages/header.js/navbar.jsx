@@ -4,8 +4,10 @@ import {Context} from "../../../index";
 import {useContext} from "react";
 import {
     ADMIN_ROUTE,
-    CATALOG_ROUTE, CUSTOMERS_ROUTE, FEEDBACK_ROUTE,
+    CATALOG_ROUTE,
+    CUSTOMERS_ROUTE,
     LOGIN_ROUTE,
+    CONTACT_ROUTE,
     ORDERS_ROUTE,
     WAREHOUSE_ROUTE
 } from "../../utils/consts";
@@ -24,7 +26,7 @@ return (
                         <>
                     <div className="loggedIn">
                 <CustomLink to={ORDERS_ROUTE}>Заказы</CustomLink>
-                <CustomLink to={FEEDBACK_ROUTE}>Общение с клиентами</CustomLink>
+                <CustomLink to={CONTACT_ROUTE}>Контакты</CustomLink>
                 <CustomLink to={CUSTOMERS_ROUTE}>Заказчики</CustomLink>
                 <CustomLink to={ADMIN_ROUTE}>Админ панель</CustomLink>
                 <CustomLink to={WAREHOUSE_ROUTE}>Склад</CustomLink>

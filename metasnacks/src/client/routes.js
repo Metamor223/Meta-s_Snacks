@@ -2,7 +2,8 @@ import React from 'react';
 import {
     ADMIN_ROUTE,
     CATALOG_ROUTE,
-    CUSTOMERS_ROUTE, FEEDBACK_ROUTE,
+    CUSTOMERS_ROUTE,
+    CONTACT_ROUTE,
     LOGIN_ROUTE,
     ORDERS_ROUTE,
     REGISTRATION_ROUTE,
@@ -17,6 +18,7 @@ import Orders from "./pages/OrdersForFactory/Orders";
 import Catalog from "./pages/CatalogPage/Catalog";
 import Warehouse from "./pages/WarehousePage/warehouse";
 import Customers from "./pages/CustomersPage/Customers";
+import Contacts from "./pages/ContactsPage/Contacts";
 
 export const authRoutes =  [
     {
@@ -28,8 +30,8 @@ export const authRoutes =  [
       Component: Customers
     },
     {
-        path: FEEDBACK_ROUTE,
-        Component: Feedback
+        path: CONTACT_ROUTE,
+        Component: Contacts
     },
     {
         path: ORDERS_ROUTE,

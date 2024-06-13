@@ -149,14 +149,14 @@ h3 {
 }
 
 .SelectionProduct ul{
-    margin-left: 10%;
     overflow-y: auto;
+    width: 70%;
     max-height: 600px;
 }
 
 .SelectionProduct li{
     height: max-content;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .Fetch_product{
@@ -203,3 +203,6 @@ h3 {
     color: #332546;
 }
 
+.ListManager{
+
+}

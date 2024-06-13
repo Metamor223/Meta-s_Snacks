@@ -7,8 +7,8 @@ export const registration = async (email, organisation_name, contactName, passwo
  return jwtDecode(data.token)
 }
 
-export const login = async (email, password) => {
- const {data} = await $host.post('api/user/login', {email, password})
+export const login = async (email, contactName, password) => {
+ const {data} = await $host.post('api/user/login', {email, contactName, password})
  localStorage.setItem('token', data.token)
  return jwtDecode(data.token)
 }
@@ -24,9 +24,24 @@ export const fetchUserDetail = async (userId) =>{
  return data
 }
 
+export const createCustomer = async (user)=>{
+ const {data} = await $authHost.post('api/user',user)
+ return data
+}
+
 export const fetchUsers = async () => {
  try {
   const {data} = await $authHost.get('api/user/'); // Преобразуем в JSON
+  return data;
+ } catch (error) {
+  console.error("Ошибка при загрузке пользователей:", error);
+  throw error;
+ }
+}
+
+export const fetchManagers = async () => {
+ try {
+  const {data} = await $authHost.get('api/user/managers');
   return data;
  } catch (error) {
   console.error("Ошибка при загрузке пользователей:", error);
